@@ -1004,12 +1004,8 @@ constexpr chars_format adjust_for_feature_macros(chars_format fmt) {
 
 } // namespace fast_float
 
-#endif
 
 // GLZ_FASTFLOAT_FAST_FLOAT_H
-
-
-
 
 namespace glz::fast_float {
 /**
