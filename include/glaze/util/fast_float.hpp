@@ -94,8 +94,7 @@
 //    DEALINGS IN THE SOFTWARE.
 //
 
-#ifndef GLZ_FASTFLOAT_CONSTEXPR_FEATURE_DETECT_H
-#define GLZ_FASTFLOAT_CONSTEXPR_FEATURE_DETECT_H
+#pragma once
 
 #ifdef __has_include
 #if __has_include(<version>)
@@ -139,10 +138,11 @@
 #define GLZ_FASTFLOAT_DETAIL_MUST_DEFINE_CONSTEXPR_VARIABLE 1
 #endif
 
-#endif // GLZ_FASTFLOAT_CONSTEXPR_FEATURE_DETECT_H
+// GLZ_FASTFLOAT_CONSTEXPR_FEATURE_DETECT_H
 
-#ifndef GLZ_FASTFLOAT_FLOAT_COMMON_H
-#define GLZ_FASTFLOAT_FLOAT_COMMON_H
+
+
+
 
 #include <cfloat>
 #include <cstdint>
@@ -1006,9 +1006,9 @@ constexpr chars_format adjust_for_feature_macros(chars_format fmt) {
 
 #endif
 
+// GLZ_FASTFLOAT_FAST_FLOAT_H
 
-#ifndef GLZ_FASTFLOAT_FAST_FLOAT_H
-#define GLZ_FASTFLOAT_FAST_FLOAT_H
+
 
 
 namespace glz::fast_float {
@@ -1061,10 +1061,10 @@ GLZ_FASTFLOAT_CONSTEXPR20 from_chars_result_t<UC>
 from_chars(UC const *first, UC const *last, T &value, int base = 10) noexcept;
 
 } // namespace fast_float
-#endif // GLZ_FASTFLOAT_FAST_FLOAT_H
 
-#ifndef GLZ_FASTFLOAT_ASCII_NUMBER_H
-#define GLZ_FASTFLOAT_ASCII_NUMBER_H
+// GLZ_FASTFLOAT_ASCII_NUMBER_H
+
+
 
 #include <cctype>
 #include <cstdint>
@@ -1642,10 +1642,10 @@ parse_int_string(UC const *p, UC const *pend, T &value,
 
 } // namespace fast_float
 
-#endif
 
-#ifndef GLZ_FASTFLOAT_FAST_TABLE_H
-#define GLZ_FASTFLOAT_FAST_TABLE_H
+
+
+// GLZ_FASTFLOAT_FAST_TABLE_H
 
 #include <cstdint>
 
@@ -2351,10 +2351,8 @@ using powers = powers_template<>;
 
 } // namespace fast_float
 
-#endif
 
-#ifndef GLZ_FASTFLOAT_DECIMAL_TO_BINARY_H
-#define GLZ_FASTFLOAT_DECIMAL_TO_BINARY_H
+// GLZ_FASTFLOAT_DECIMAL_TO_BINARY_H
 
 #include <cfloat>
 #include <cinttypes>
@@ -2561,10 +2559,8 @@ compute_float(int64_t q, uint64_t w) noexcept {
 
 } // namespace fast_float
 
-#endif
 
-#ifndef GLZ_FASTFLOAT_BIGINT_H
-#define GLZ_FASTFLOAT_BIGINT_H
+// GLZ_FASTFLOAT_BIGINT_H
 
 #include <algorithm>
 #include <cstdint>
@@ -3185,10 +3181,9 @@ struct bigint : pow5_tables<> {
 
 } // namespace fast_float
 
-#endif
 
-#ifndef GLZ_FASTFLOAT_DIGIT_COMPARISON_H
-#define GLZ_FASTFLOAT_DIGIT_COMPARISON_H
+
+// GLZ_FASTFLOAT_DIGIT_COMPARISON_H
 
 #include <algorithm>
 #include <cstdint>
@@ -3638,10 +3633,8 @@ digit_comp(parsed_number_string_t<UC> &num, adjusted_mantissa am) noexcept {
 
 } // namespace fast_float
 
-#endif
 
-#ifndef GLZ_FASTFLOAT_PARSE_NUMBER_H
-#define GLZ_FASTFLOAT_PARSE_NUMBER_H
+// GLZ_FASTFLOAT_PARSE_NUMBER_H
 
 
 #include <cmath>
@@ -4024,6 +4017,3 @@ from_chars_advanced(UC const *first, UC const *last, T &value,
 }
 
 } // namespace fast_float
-
-#endif
-

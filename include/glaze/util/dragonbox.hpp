@@ -15,8 +15,7 @@
 // is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 // KIND, either express or implied.
 
-#ifndef GLZ_JKJ_HEADER_DRAGONBOX
-#define GLZ_JKJ_HEADER_DRAGONBOX
+#pragma once
 
 // Attribute for storing static data into a dedicated place, e.g. flash memory. Every ODR-used
 // static data declaration will be decorated with this macro. The users may define this macro,
@@ -4228,6 +4227,4 @@ namespace glz::jkj
 #undef GLZ_JKJ_STATIC_DATA_SECTION_DEFINED
 #else
 #undef GLZ_JKJ_STATIC_DATA_SECTION
-#endif
-
 #endif
