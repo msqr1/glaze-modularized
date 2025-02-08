@@ -1,9 +1,11 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <numeric>
 #include <random>
+#ifdef CPP_MODULES
 export module glaze.json.study;
 import glaze.core.common;
 import glaze.json.json_ptr;
@@ -13,8 +15,6 @@ import glaze.thread.threadpool;
 import glaze.util.expected;
 import glaze.util.type_traits;
 #else
-#include <numeric>
-#include <random>
 #include "glaze/core/common.cppm"
 #include "glaze/json/json_ptr.cppm"
 #include "glaze/json/read.cppm"

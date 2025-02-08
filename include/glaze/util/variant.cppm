@@ -1,18 +1,17 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <algorithm>
 #include <cstddef>
 #include <variant>
+#ifdef CPP_MODULES
 export module glaze.util.variant;
 import glaze.util.for_each;
 import glaze.util.parse;
 import glaze.util.type_traits;
 #else
-#include <algorithm>
-#include <cstddef>
-#include <variant>
 #include "glaze/util/for_each.cppm"
 #include "glaze/util/parse.cppm"
 #include "glaze/util/type_traits.cppm"

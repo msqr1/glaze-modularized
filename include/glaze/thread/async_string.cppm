@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <algorithm>
 #include <mutex>
 #include <shared_mutex>
@@ -12,20 +13,11 @@ module;
 #ifdef __cpp_lib_format
 #include <format>
 #endif
+#ifdef CPP_MODULES
 export module glaze.thread.async_string;
 import glaze.core.common;
 #else
-#include <algorithm>
-#include <mutex>
-#include <shared_mutex>
-#include <string>
-#include <string_view>
-#include <utility>
-#include <version>
 #include "glaze/core/common.cppm"
-#ifdef __cpp_lib_format
-#include <format>
-#endif
 #endif
 
 // Glaze Library

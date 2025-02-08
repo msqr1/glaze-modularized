@@ -1,13 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <cstdint>
+#ifdef CPP_MODULES
 export module glaze.util.primes_64;
 #else
-#include <array>
-#include <cstdint>
 #endif
 
 // Glaze Library

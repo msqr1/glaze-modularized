@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <algorithm>
 #include <concepts>
 #include <functional>
@@ -10,17 +11,10 @@ module;
 #include <stdexcept>
 #include <utility>
 #include <vector>
+#ifdef CPP_MODULES
 export module glaze.containers.flat_map;
 import glaze.util.expected;
 #else
-#include <algorithm>
-#include <concepts>
-#include <functional>
-#include <initializer_list>
-#include <iterator>
-#include <stdexcept>
-#include <utility>
-#include <vector>
 #include "glaze/util/expected.cppm"
 #endif
 

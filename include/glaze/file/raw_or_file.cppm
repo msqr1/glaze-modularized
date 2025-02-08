@@ -1,12 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <filesystem>
+#ifdef CPP_MODULES
 export module glaze.file.raw_or_file;
 import glaze.core.common;
 #else
-#include <filesystem>
 #include "glaze/core/common.cppm"
 #endif
 

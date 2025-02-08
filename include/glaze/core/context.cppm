@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstdint>
 #include <iterator>
 #include <string>
@@ -14,12 +15,9 @@ module;
    if constexpr (not Opts.null_terminated) { \
       --ctx.indentation_level;               \
    }
+#ifdef CPP_MODULES
 export module glaze.core.context;
 #else
-#include <cstdint>
-#include <iterator>
-#include <string>
-#include <string_view>
 #define GLZ_ADD_LEVEL                        \
    if constexpr (not Opts.null_terminated) { \
       ++ctx.indentation_level;               \

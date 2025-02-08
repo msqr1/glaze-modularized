@@ -1,7 +1,9 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
+#ifdef CPP_MODULES
 export module glaze.json.ptr;
 import glaze.core.ptr;
 import glaze.json.read;

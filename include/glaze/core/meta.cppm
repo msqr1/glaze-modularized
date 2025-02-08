@@ -1,8 +1,10 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
+#ifdef CPP_MODULES
 export module glaze.core.meta;
 import glaze.reflection.get_name;
 import glaze.tuplet.tuple;
@@ -11,7 +13,6 @@ import glaze.util.string_literal;
 import glaze.util.type_traits;
 import glaze.util.variant;
 #else
-#include <array>
 #include "glaze/reflection/get_name.cppm"
 #include "glaze/tuplet/tuple.cppm"
 #include "glaze/util/for_each.cppm"

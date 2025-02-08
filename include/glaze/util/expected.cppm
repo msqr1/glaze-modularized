@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <utility>
 #include <version>
 #ifndef GLZ_THROW_OR_ABORT
@@ -33,10 +34,9 @@ module;
 #include <type_traits>
 #include <variant>
 #endif
+#ifdef CPP_MODULES
 export module glaze.util.expected;
 #else
-#include <utility>
-#include <version>
 #ifndef GLZ_THROW_OR_ABORT
 #if __cpp_exceptions
 #define GLZ_THROW_OR_ABORT(EXC) (throw(EXC))
@@ -45,26 +45,6 @@ export module glaze.util.expected;
 #define GLZ_THROW_OR_ABORT(EXC) (std::abort())
 #define GLZ_NOEXCEPT noexcept(true)
 #endif
-#endif
-#if __cpp_exceptions
-#include <stdexcept>
-#endif
-#ifdef __has_include
-#if __has_include(<expected>) && __cpp_lib_expected >= 202202L
-#include <expected>
-#elif __has_include(<experimental/expected>)
-#include <experimental/expected>
-#endif
-#endif
-#if defined(__cpp_lib_expected)
-#else
-#include <concepts>
-#include <deque>
-#include <exception>
-#include <functional>
-#include <memory>
-#include <type_traits>
-#include <variant>
 #endif
 #endif
 

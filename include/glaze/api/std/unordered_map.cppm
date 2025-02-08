@@ -1,12 +1,13 @@
 #pragma once
-#include "../../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../../Export.hpp"
 #include <unordered_map>
+#ifdef CPP_MODULES
 export module glaze.api.std.unordered_map;
 import glaze.core.meta;
 #else
-#include <unordered_map>
 #include "glaze/core/meta.cppm"
 #endif
 

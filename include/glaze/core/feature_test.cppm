@@ -1,11 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #define glaze_v4_3_0_trace
 #define glaze_v4_2_3_tuple
 #define glaze_v3_6_0_reflect
 #define glaze_v3_5_0_to_from
+#ifdef CPP_MODULES
 export module glaze.core.feature_test;
 #else
 #define glaze_v4_3_0_trace

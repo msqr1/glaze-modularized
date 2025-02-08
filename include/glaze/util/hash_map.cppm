@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <algorithm>
 #include <array>
 #include <bit>
@@ -15,23 +16,11 @@ module;
 #include <numeric>
 #include <span>
 #include <string_view>
+#ifdef CPP_MODULES
 export module glaze.util.hash_map;
 import glaze.concepts.container_concepts;
 import glaze.util.compare;
 #else
-#include <algorithm>
-#include <array>
-#include <bit>
-#include <cmath>
-#include <concepts>
-#include <cstddef>
-#include <cstdint>
-#include <cstdlib>
-#include <cstring>
-#include <limits>
-#include <numeric>
-#include <span>
-#include <string_view>
 #include "glaze/concepts/container_concepts.cppm"
 #include "glaze/util/compare.cppm"
 #endif

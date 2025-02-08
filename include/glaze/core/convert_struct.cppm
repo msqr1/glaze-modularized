@@ -1,7 +1,9 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
+#ifdef CPP_MODULES
 export module glaze.core.convert_struct;
 import glaze.core.common;
 import glaze.core.reflect;

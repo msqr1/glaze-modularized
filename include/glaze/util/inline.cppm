@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #if defined(__clang__) || defined(__GNUC__) || defined(_MSC_VER)
 #ifndef GLZ_USE_ALWAYS_INLINE
 #define GLZ_USE_ALWAYS_INLINE
@@ -34,6 +35,7 @@ module;
 #define GLZ_NO_INLINE __declspec((noinline))
 #endif
 #endif
+#ifdef CPP_MODULES
 export module glaze.util.inline;
 #else
 #if defined(__clang__) || defined(__GNUC__) || defined(_MSC_VER)

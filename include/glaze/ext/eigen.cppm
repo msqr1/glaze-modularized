@@ -1,11 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #if __has_include(<Eigen/Core>)
 #include <Eigen/Core>
 #endif
 #include <span>
+#ifdef CPP_MODULES
 export module glaze.ext.eigen;
 import glaze.api.std.array;
 import glaze.beve.read;
@@ -16,10 +18,6 @@ import glaze.json.json_ptr;
 import glaze.json.read;
 import glaze.json.write;
 #else
-#if __has_include(<Eigen/Core>)
-#include <Eigen/Core>
-#endif
-#include <span>
 #include "glaze/api/std/array.cppm"
 #include "glaze/beve/read.cppm"
 #include "glaze/beve/write.cppm"

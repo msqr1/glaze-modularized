@@ -1,20 +1,17 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #ifdef _WIN32
 #include <winsock2.h>
 #else
 #include <unistd.h>
 #endif
+#ifdef CPP_MODULES
 export module glaze.file.hostname_include;
 import glaze.core.common;
 #else
-#ifdef _WIN32
-#include <winsock2.h>
-#else
-#include <unistd.h>
-#endif
 #include "glaze/core/common.cppm"
 #endif
 

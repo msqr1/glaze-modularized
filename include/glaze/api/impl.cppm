@@ -1,7 +1,9 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
+#ifdef CPP_MODULES
 export module glaze.api.impl;
 import glaze.api.api;
 import glaze.api.std.array;

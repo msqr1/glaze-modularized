@@ -1,21 +1,17 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <concepts>
 #include <cstdint>
 #include <ranges>
 #include <utility>
 #include <vector>
 #include <version>
+#ifdef CPP_MODULES
 export module glaze.concepts.container_concepts;
 #else
-#include <concepts>
-#include <cstdint>
-#include <ranges>
-#include <utility>
-#include <vector>
-#include <version>
 #endif
 
 // Glaze Library

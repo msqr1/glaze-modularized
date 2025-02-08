@@ -1,20 +1,18 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <concepts>
 #include <cstdint>
 #include <cstring>
+#ifdef CPP_MODULES
 export module glaze.util.dtoa;
 import glaze.util.dragonbox;
 import glaze.util.inline;
 import glaze.util.itoa;
 #else
-#include <array>
-#include <concepts>
-#include <cstdint>
-#include <cstring>
 #include "glaze/util/dragonbox.cppm"
 #include "glaze/util/inline.cppm"
 #include "glaze/util/itoa.cppm"

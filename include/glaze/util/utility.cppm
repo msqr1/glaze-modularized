@@ -1,11 +1,12 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstddef>
+#ifdef CPP_MODULES
 export module glaze.util.utility;
 #else
-#include <cstddef>
 #endif
 
 // Glaze Library

@@ -1,8 +1,10 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <utility>
+#ifdef CPP_MODULES
 export module glaze.beve.write;
 import glaze.beve.header;
 import glaze.core.opts;
@@ -13,7 +15,6 @@ import glaze.util.dump;
 import glaze.util.for_each;
 import glaze.util.variant;
 #else
-#include <utility>
 #include "glaze/beve/header.cppm"
 #include "glaze/core/opts.cppm"
 #include "glaze/core/reflect.cppm"

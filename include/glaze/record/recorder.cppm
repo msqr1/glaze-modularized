@@ -1,10 +1,12 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <deque>
 #include <string>
 #include <variant>
+#ifdef CPP_MODULES
 export module glaze.record.recorder;
 import glaze.core.common;
 import glaze.csv;
@@ -13,9 +15,6 @@ import glaze.util.string_literal;
 import glaze.util.type_traits;
 import glaze.util.variant;
 #else
-#include <deque>
-#include <string>
-#include <variant>
 #include "glaze/core/common.cppm"
 #include "glaze/csv.cppm" // TODO: split out recorder specializations so this isn't necessary
 #include "glaze/json.cppm" // TODO: split out recorder specializations so this isn't necessary

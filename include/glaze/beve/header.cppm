@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <bit>
 #include <concepts>
@@ -13,16 +14,11 @@ module;
       ctx.error = error_code::unexpected_end; \
       return RETURN;                          \
    }
+#ifdef CPP_MODULES
 export module glaze.beve.header;
 import glaze.core.context;
 import glaze.util.inline;
 #else
-#include <array>
-#include <bit>
-#include <concepts>
-#include <cstdint>
-#include <cstring>
-#include <iterator>
 #include "glaze/core/context.cppm"
 #include "glaze/util/inline.cppm"
 #define GLZ_END_CHECK(RETURN)                 \

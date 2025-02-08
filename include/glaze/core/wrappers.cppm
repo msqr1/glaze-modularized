@@ -1,12 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <type_traits>
+#ifdef CPP_MODULES
 export module glaze.core.wrappers;
 import glaze.core.opts;
 #else
-#include <type_traits>
 #include "glaze/core/opts.cppm"
 #endif
 

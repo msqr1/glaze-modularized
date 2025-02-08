@@ -1,14 +1,15 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <type_traits>
+#ifdef CPP_MODULES
 export module glaze.json.raw_string;
 import glaze.core.opts;
 import glaze.json.read;
 import glaze.json.write;
 #else
-#include <type_traits>
 #include "glaze/core/opts.cppm"
 #include "glaze/json/read.cppm"
 #include "glaze/json/write.cppm"

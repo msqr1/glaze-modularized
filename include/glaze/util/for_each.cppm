@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <tuple>
 #include <utility>
 #define GLZ_PARENS ()
@@ -41,12 +42,6 @@ module;
 #define GLZ_50 GLZ_40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
 #define GLZ_60 GLZ_50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
 #define GLZ_INVOKE(I) lambda.template operator()<I>();
-#define GLZ_INVOKE_ALL(X, ...)            \
-   else if constexpr (N == X)             \
-   {                                      \
-      GLZ_EVERY(GLZ_INVOKE, __VA_ARGS__); \
-   }
-#undef GLZ_10
 #undef GLZ_20
 #undef GLZ_30
 #undef GLZ_40
@@ -59,12 +54,11 @@ module;
 #undef GLZ_EVERY_AGAIN
 #undef GLZ_EVERY_HELPER
 #undef GLZ_EVERY
+#ifdef CPP_MODULES
 export module glaze.util.for_each;
 import glaze.util.inline;
 import glaze.util.utility;
 #else
-#include <tuple>
-#include <utility>
 #include "glaze/util/inline.cppm"
 #include "glaze/util/utility.cppm"
 #define GLZ_PARENS ()
@@ -104,12 +98,6 @@ import glaze.util.utility;
 #define GLZ_50 GLZ_40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
 #define GLZ_60 GLZ_50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
 #define GLZ_INVOKE(I) lambda.template operator()<I>();
-#define GLZ_INVOKE_ALL(X, ...)            \
-   else if constexpr (N == X)             \
-   {                                      \
-      GLZ_EVERY(GLZ_INVOKE, __VA_ARGS__); \
-   }
-#undef GLZ_10
 #undef GLZ_20
 #undef GLZ_30
 #undef GLZ_40

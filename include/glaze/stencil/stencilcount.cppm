@@ -1,7 +1,9 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
+#ifdef CPP_MODULES
 export module glaze.stencil.stencilcount;
 import glaze.core.read;
 import glaze.core.reflect;

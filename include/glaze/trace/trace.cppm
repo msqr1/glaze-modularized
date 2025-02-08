@@ -1,18 +1,16 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <chrono>
 #include <deque>
 #include <mutex>
 #include <thread>
+#ifdef CPP_MODULES
 export module glaze.trace.trace;
 import glaze.json.write;
 #else
-#include <chrono>
-#include <deque>
-#include <mutex>
-#include <thread>
 #include "glaze/json/write.cppm"
 #endif
 

@@ -1,17 +1,15 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstdint>
 #include <cstring>
 #include <string_view>
 #include <type_traits>
+#ifdef CPP_MODULES
 export module glaze.util.compare;
 #else
-#include <cstdint>
-#include <cstring>
-#include <string_view>
-#include <type_traits>
 #endif
 
 // Glaze Library

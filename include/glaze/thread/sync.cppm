@@ -1,20 +1,17 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <concepts>
 #include <mutex>
 #include <shared_mutex>
 #include <type_traits>
 #include <utility>
+#ifdef CPP_MODULES
 export module glaze.thread.sync;
 import glaze.util.type_traits;
 #else
-#include <concepts>
-#include <mutex>
-#include <shared_mutex>
-#include <type_traits>
-#include <utility>
 #include "glaze/util/type_traits.cppm"
 #endif
 

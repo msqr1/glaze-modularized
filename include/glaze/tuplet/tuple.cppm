@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <compare>
 #include <concepts>
 #include <cstddef>
@@ -24,14 +25,10 @@ module;
 #include <array>
 #include <tuple>
 #include <variant>
+#ifdef CPP_MODULES
 export module glaze.tuplet.tuple;
 import glaze.util.inline;
 #else
-#include <compare>
-#include <concepts>
-#include <cstddef>
-#include <type_traits>
-#include <utility>
 #include "glaze/util/inline.cppm"
 #if (__has_cpp_attribute(no_unique_address))
 #define GLZ_NO_UNIQUE_ADDRESS [[no_unique_address]]
@@ -47,9 +44,6 @@ import glaze.util.inline;
 #define TUPLET_CAT_BY_FORWARDING_TUPLE 1
 #endif
 #endif
-#include <array>
-#include <tuple>
-#include <variant>
 #endif
 
 // Glaze Library

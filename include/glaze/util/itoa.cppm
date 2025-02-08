@@ -1,13 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <concepts>
 #include <cstdint>
+#ifdef CPP_MODULES
 export module glaze.util.itoa;
 #else
-#include <concepts>
-#include <cstdint>
 #endif
 
 // Glaze Library

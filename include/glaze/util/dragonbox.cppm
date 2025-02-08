@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #ifndef GLZ_JKJ_STATIC_DATA_SECTION
 #define GLZ_JKJ_STATIC_DATA_SECTION
 #else
@@ -178,6 +179,7 @@ module;
 #else
 #undef GLZ_JKJ_STATIC_DATA_SECTION
 #endif
+#ifdef CPP_MODULES
 export module glaze.util.dragonbox;
 #else
 #ifndef GLZ_JKJ_STATIC_DATA_SECTION
@@ -187,16 +189,6 @@ export module glaze.util.dragonbox;
 #endif
 #ifndef GLZ_JKJ_STD_REPLACEMENT_NAMESPACE
 #define GLZ_JKJ_STD_REPLACEMENT_NAMESPACE std
-#include <cassert>
-#include <cstdint>
-#include <cstring>
-#include <limits>
-#include <type_traits>
-#ifdef __has_include
-#if __has_include(<version>)
-#include <version>
-#endif
-#endif
 #else
 #define GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED 1
 #endif
@@ -258,7 +250,6 @@ export module glaze.util.dragonbox;
 #define GLZ_JKJ_HAS_BIT_CAST 0
 #endif
 #elif defined(__cpp_lib_bit_cast) && __cpp_lib_bit_cast >= 201806L
-#include <bit>
 #define GLZ_JKJ_HAS_BIT_CAST 1
 #else
 #define GLZ_JKJ_HAS_BIT_CAST 0
@@ -322,11 +313,6 @@ export module glaze.util.dragonbox;
 #define GLZ_JKJ_HAS_BUILTIN(x) __has_builtin(x)
 #else
 #define GLZ_JKJ_HAS_BUILTIN(x) false
-#endif
-#if defined(_MSC_VER)
-#include <intrin.h>
-#elif defined(__INTEL_COMPILER)
-#include <immintrin.h>
 #endif
 #undef min
 #undef max

@@ -1,14 +1,15 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <span>
+#ifdef CPP_MODULES
 export module glaze.core.read;
 import glaze.api.std.span;
 import glaze.core.common;
 import glaze.util.parse;
 #else
-#include <span>
 #include "glaze/api/std/span.cppm"
 #include "glaze/core/common.cppm"
 #include "glaze/util/parse.cppm"

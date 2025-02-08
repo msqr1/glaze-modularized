@@ -1,15 +1,14 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstddef>
 #include <initializer_list>
 #include <type_traits>
+#ifdef CPP_MODULES
 export module glaze.hardware.volatile_array;
 #else
-#include <cstddef>
-#include <initializer_list>
-#include <type_traits>
 #endif
 
 // Glaze Library

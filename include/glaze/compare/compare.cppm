@@ -1,13 +1,14 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <functional>
+#ifdef CPP_MODULES
 export module glaze.compare.compare;
 import glaze.core.common;
 import glaze.core.reflect;
 #else
-#include <functional>
 #include "glaze/core/common.cppm"
 #include "glaze/core/reflect.cppm"
 #endif

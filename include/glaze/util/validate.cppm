@@ -1,17 +1,16 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <algorithm>
 #include <optional>
 #include <string>
+#ifdef CPP_MODULES
 export module glaze.util.validate;
 import glaze.core.write_chars;
 import glaze.util.dump;
 #else
-#include <algorithm>
-#include <optional>
-#include <string>
 #include "glaze/core/write_chars.cppm"
 #include "glaze/util/dump.cppm"
 #endif

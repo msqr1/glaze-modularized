@@ -1,13 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <functional>
 #include <tuple>
+#ifdef CPP_MODULES
 export module glaze.util.type_traits;
 #else
-#include <functional>
-#include <tuple>
 #endif
 
 // Glaze Library

@@ -1,17 +1,18 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstdint>
 #define bool_t char
 #ifndef GLZ_NULL_TERMINATED
 #define GLZ_NULL_TERMINATED true
 #endif
 #undef bool_t
+#ifdef CPP_MODULES
 export module glaze.core.opts;
 import glaze.util.type_traits;
 #else
-#include <cstdint>
 #include "glaze/util/type_traits.cppm"
 #define bool_t char
 #ifndef GLZ_NULL_TERMINATED

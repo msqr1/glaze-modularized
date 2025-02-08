@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #if __has_include(<asio.hpp>) && !defined(GLZ_USE_BOOST_ASIO)
 #include <asio.hpp>
 #elif __has_include(<boost/asio.hpp>)
@@ -13,21 +14,17 @@ module;
 #include <cassert>
 #include <coroutine>
 #include <iostream>
+#ifdef CPP_MODULES
 export module glaze.ext.glaze_asio;
 import glaze.rpc.repe.registry;
 import glaze.util.memory_pool;
 #else
 #if __has_include(<asio.hpp>) && !defined(GLZ_USE_BOOST_ASIO)
-#include <asio.hpp>
 #elif __has_include(<boost/asio.hpp>)
 #ifndef GLZ_USING_BOOST_ASIO
 #define GLZ_USING_BOOST_ASIO
 #endif
-#include <boost/asio.hpp>
 #endif
-#include <cassert>
-#include <coroutine>
-#include <iostream>
 #include "glaze/rpc/repe/registry.cppm"
 #include "glaze/util/memory_pool.cppm"
 #endif

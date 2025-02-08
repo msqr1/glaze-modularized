@@ -1,15 +1,16 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <tuple>
+#ifdef CPP_MODULES
 export module glaze.util.tuple;
 import glaze.reflection.get_name;
 import glaze.tuplet.tuple;
 import glaze.util.for_each;
 import glaze.util.string_literal;
 #else
-#include <tuple>
 #include "glaze/reflection/get_name.cppm"
 #include "glaze/tuplet/tuple.cppm"
 #include "glaze/util/for_each.cppm"

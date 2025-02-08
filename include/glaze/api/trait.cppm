@@ -1,10 +1,10 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
-#define std_trait(x) static constexpr sv x = to_sv<std::x##_v<T>>()
-#undef std_trait
+#ifdef CPP_MODULES
 export module glaze.api.trait;
 import glaze.api.hash;
 import glaze.core.common;
@@ -12,14 +12,11 @@ import glaze.core.meta;
 import glaze.core.reflect;
 import glaze.util.string_literal;
 #else
-#include <array>
 #include "glaze/api/hash.cppm"
 #include "glaze/core/common.cppm"
 #include "glaze/core/meta.cppm"
 #include "glaze/core/reflect.cppm"
 #include "glaze/util/string_literal.cppm"
-#define std_trait(x) static constexpr sv x = to_sv<std::x##_v<T>>()
-#undef std_trait
 #endif
 
 // Glaze Library

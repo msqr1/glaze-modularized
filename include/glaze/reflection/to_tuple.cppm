@@ -1,22 +1,19 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <optional>
 #include <string_view>
 #include <tuple>
 #include <type_traits>
 #include <utility>
+#ifdef CPP_MODULES
 export module glaze.reflection.to_tuple;
 import glaze.tuplet.tuple;
 import glaze.util.inline;
 import glaze.util.type_traits;
 #else
-#include <optional>
-#include <string_view>
-#include <tuple>
-#include <type_traits>
-#include <utility>
 #include "glaze/tuplet/tuple.cppm"
 #include "glaze/util/inline.cppm"
 #include "glaze/util/type_traits.cppm"

@@ -1,9 +1,11 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <unordered_map>
 #include <utility>
+#ifdef CPP_MODULES
 export module glaze.ext.jsonrpc;
 import glaze.glaze;
 import glaze.tuplet.tuple;
@@ -12,8 +14,6 @@ import glaze.util.expected;
 #include <glaze/glaze.cppm>
 #include <glaze/tuplet/tuple.cppm>
 #include <glaze/util/expected.cppm>
-#include <unordered_map>
-#include <utility>
 #endif
 
 // Glaze Library

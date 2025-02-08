@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <functional>
 #include <map>
 #include <memory>
@@ -12,6 +13,7 @@ module;
 #else
 #define DLL_EXPORT
 #endif
+#ifdef CPP_MODULES
 export module glaze.api.api;
 import glaze.api.std.string;
 import glaze.api.trait;
@@ -19,11 +21,6 @@ import glaze.core.context;
 import glaze.core.opts;
 import glaze.util.expected;
 #else
-#include <functional>
-#include <map>
-#include <memory>
-#include <span>
-#include <stdexcept>
 #include "glaze/api/std/string.cppm"
 #include "glaze/api/trait.cppm"
 #include "glaze/core/context.cppm"

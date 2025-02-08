@@ -1,15 +1,14 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <chrono>
 #include <filesystem>
 #include <future>
+#ifdef CPP_MODULES
 export module glaze.file.file_watch;
 #else
-#include <chrono>
-#include <filesystem>
-#include <future>
 #endif
 
 // Glaze Library

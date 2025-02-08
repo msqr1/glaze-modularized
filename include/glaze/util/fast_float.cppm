@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #ifdef __has_include
 #if __has_include(<version>)
 #include <version>
@@ -185,13 +186,9 @@ module;
 #include <cstring>
 #include <limits>
 #include <system_error>
+#ifdef CPP_MODULES
 export module glaze.util.fast_float;
 #else
-#ifdef __has_include
-#if __has_include(<version>)
-#include <version>
-#endif
-#endif
 #if __cpp_constexpr >= 201304
 #define GLZ_FASTFLOAT_CONSTEXPR14 constexpr
 #else
@@ -221,20 +218,6 @@ export module glaze.util.fast_float;
 #else
 #define GLZ_FASTFLOAT_DETAIL_MUST_DEFINE_CONSTEXPR_VARIABLE 1
 #endif
-#include <cfloat>
-#include <cstdint>
-#include <cassert>
-#include <cstring>
-#include <type_traits>
-#include <system_error>
-#ifdef __has_include
-#if __has_include(<stdfloat>) && (__cplusplus > 202002L || _MSVC_LANG > 202002L)
-#include <stdfloat>
-#endif
-#endif
-#if GLZ_FASTFLOAT_HAS_BIT_CAST
-#include <bit>
-#endif
 #if (defined(__x86_64) || defined(__x86_64__) || defined(_M_X64) ||            \
      defined(__amd64) || defined(__aarch64__) || defined(_M_ARM64) ||          \
      defined(__MINGW64__) || defined(__s390x__) ||                             \
@@ -254,10 +237,6 @@ export module glaze.util.fast_float;
 #define GLZ_FASTFLOAT_64BIT 1
 #endif
 #endif
-#if ((defined(_WIN32) || defined(_WIN64)) && !defined(__clang__)) ||           \
-    (defined(_M_ARM64) && !defined(__MINGW32__))
-#include <intrin.h>
-#endif
 #if defined(_MSC_VER) && !defined(__clang__)
 #define GLZ_FASTFLOAT_VISUAL_STUDIO 1
 #endif
@@ -266,19 +245,6 @@ export module glaze.util.fast_float;
 #elif defined _WIN32
 #define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
 #else
-#if defined(__APPLE__) || defined(__FreeBSD__)
-#include <machine/endian.h>
-#elif defined(sun) || defined(__sun)
-#include <sys/byteorder.h>
-#elif defined(__MVS__)
-#include <sys/endian.h>
-#else
-#ifdef __has_include
-#if __has_include(<endian.h>)
-#include <endian.h>
-#endif //__has_include(<endian.h>)
-#endif //__has_include
-#endif
 #ifndef __BYTE_ORDER__
 #define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
 #endif
@@ -334,42 +300,11 @@ export module glaze.util.fast_float;
   }
 #define GLZ_FASTFLOAT_ENABLE_IF(...)                                               \
   typename std::enable_if<(__VA_ARGS__), int>::type
-#include <cctype>
-#include <cstdint>
-#include <cstring>
-#include <iterator>
-#include <limits>
-#include <type_traits>
-#ifdef GLZ_FASTFLOAT_SSE2
-#include <emmintrin.h>
-#endif
-#ifdef GLZ_FASTFLOAT_NEON
-#include <arm_neon.h>
-#endif
-#include <cstdint>
-#include <cfloat>
-#include <cinttypes>
-#include <cmath>
-#include <cstdint>
-#include <cstdlib>
-#include <cstring>
-#include <algorithm>
-#include <cstdint>
-#include <climits>
-#include <cstring>
 #if defined(GLZ_FASTFLOAT_64BIT) && !defined(__sparc)
 #define GLZ_FASTFLOAT_64BIT_LIMB 1
 #else
 #define GLZ_FASTFLOAT_32BIT_LIMB
 #endif
-#include <algorithm>
-#include <cstdint>
-#include <cstring>
-#include <iterator>
-#include <cmath>
-#include <cstring>
-#include <limits>
-#include <system_error>
 #endif
 
 // fast_float version 7.0.0, https://github.com/fastfloat/fast_float

@@ -1,14 +1,14 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <atomic>
 #include <cstdio>
+#ifdef CPP_MODULES
 export module glaze.ext.cli_menu;
 import glaze.glaze;
 #else
-#include <atomic>
-#include <cstdio>
 #include "glaze/glaze.cppm"
 #endif
 

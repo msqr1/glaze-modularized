@@ -1,24 +1,20 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <bit>
 #include <cmath>
 #include <cstdint>
 #include <cstring>
 #include <iterator>
+#ifdef CPP_MODULES
 export module glaze.util.atoi;
 import glaze.util.for_each;
 import glaze.util.inline;
 import glaze.util.type_traits;
 #else
-#include <array>
-#include <bit>
-#include <cmath>
-#include <cstdint>
-#include <cstring>
-#include <iterator>
 #include "glaze/util/for_each.cppm"
 #include "glaze/util/inline.cppm"
 #include "glaze/util/type_traits.cppm"

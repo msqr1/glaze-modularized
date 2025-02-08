@@ -1,7 +1,9 @@
 #pragma once
-#include "../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../Export.hpp"
+#ifdef CPP_MODULES
 export module glaze.glaze_exceptions;
 import glaze.exceptions.binary_exceptions;
 import glaze.exceptions.csv_exceptions;

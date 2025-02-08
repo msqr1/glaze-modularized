@@ -1,13 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <string_view>
+#ifdef CPP_MODULES
 export module glaze.util.string_literal;
 #else
-#include <array>
-#include <string_view>
 #endif
 
 // Glaze Library

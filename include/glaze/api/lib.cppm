@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <filesystem>
 #include <map>
 #include <string_view>
@@ -29,12 +30,10 @@ module;
 #define SHARED_LIBRARY_EXTENSION ".so"
 #define SHARED_LIBRARY_PREFIX "lib"
 #endif
+#ifdef CPP_MODULES
 export module glaze.api.lib;
 import glaze.api.api;
 #else
-#include <filesystem>
-#include <map>
-#include <string_view>
 #include "glaze/api/api.cppm"
 #if defined(_WIN32) || defined(__CYGWIN__)
 #ifndef GLAZE_API_ON_WINDOWS
@@ -43,20 +42,14 @@ import glaze.api.api;
 #endif
 #ifdef GLAZE_API_ON_WINDOWS
 #ifdef NOMINMAX
-#include <windows.h>
 #else
-#define NOMINMAX
-#include <windows.h>
-#undef NOMINMAX
 #endif
 #define SHARED_LIBRARY_EXTENSION ".dll"
 #define SHARED_LIBRARY_PREFIX ""
 #elif __APPLE__
-#include <dlfcn.h>
 #define SHARED_LIBRARY_EXTENSION ".dylib"
 #define SHARED_LIBRARY_PREFIX "lib"
 #elif __has_include(<dlfcn.h>)
-#include <dlfcn.h>
 #define SHARED_LIBRARY_EXTENSION ".so"
 #define SHARED_LIBRARY_PREFIX "lib"
 #endif

@@ -1,11 +1,13 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstddef>
 #include <map>
 #include <variant>
 #include <vector>
+#ifdef CPP_MODULES
 export module glaze.json.json_t;
 import glaze.api.std.string;
 import glaze.api.std.variant;
@@ -13,10 +15,6 @@ import glaze.json.read;
 import glaze.json.write;
 import glaze.util.expected;
 #else
-#include <cstddef>
-#include <map>
-#include <variant>
-#include <vector>
 #include "glaze/api/std/string.cppm"
 #include "glaze/api/std/variant.cppm"
 #include "glaze/json/read.cppm"

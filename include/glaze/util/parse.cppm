@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <algorithm>
 #include <bit>
 #include <charconv>
@@ -153,6 +154,7 @@ module;
          }                                                               \
       }                                                                  \
    }
+#ifdef CPP_MODULES
 export module glaze.util.parse;
 import glaze.core.context;
 import glaze.core.meta;
@@ -164,12 +166,6 @@ import glaze.util.expected;
 import glaze.util.inline;
 import glaze.util.string_literal;
 #else
-#include <algorithm>
-#include <bit>
-#include <charconv>
-#include <cstring>
-#include <iterator>
-#include <span>
 #include "glaze/core/context.cppm"
 #include "glaze/core/meta.cppm"
 #include "glaze/core/opts.cppm"

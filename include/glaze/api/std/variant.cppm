@@ -1,12 +1,13 @@
 #pragma once
-#include "../../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../../Export.hpp"
 #include <variant>
+#ifdef CPP_MODULES
 export module glaze.api.std.variant;
 import glaze.core.meta;
 #else
-#include <variant>
 #include "glaze/core/meta.cppm"
 #endif
 

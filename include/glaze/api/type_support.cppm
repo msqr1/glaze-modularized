@@ -1,31 +1,17 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstdint>
 #include <string_view>
-#define specialize(type)                              \
-   template <>                                        \
-   struct meta<type>                                  \
-   {                                                  \
-      static constexpr std::string_view name = #type; \
-   };
-#undef specialize
+#ifdef CPP_MODULES
 export module glaze.api.type_support;
 import glaze.core.meta;
 import glaze.util.for_each;
 #else
-#include <cstdint>
-#include <string_view>
 #include "glaze/core/meta.cppm"
 #include "glaze/util/for_each.cppm"
-#define specialize(type)                              \
-   template <>                                        \
-   struct meta<type>                                  \
-   {                                                  \
-      static constexpr std::string_view name = #type; \
-   };
-#undef specialize
 #endif
 
 // Glaze Library

@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <string_view>
 #if defined(__clang__) || defined(__GNUC__)
@@ -9,12 +10,11 @@ module;
 #elif defined(_MSC_VER)
 #define GLZ_PRETTY_FUNCTION __FUNCSIG__
 #endif
+#ifdef CPP_MODULES
 export module glaze.reflection.get_name;
 import glaze.reflection.to_tuple;
 import glaze.util.string_literal;
 #else
-#include <array>
-#include <string_view>
 #include "glaze/reflection/to_tuple.cppm"
 #include "glaze/util/string_literal.cppm"
 #if defined(__clang__) || defined(__GNUC__)

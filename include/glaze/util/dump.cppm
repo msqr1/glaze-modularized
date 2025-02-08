@@ -1,22 +1,19 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <bit>
 #include <cstddef>
 #include <cstring>
 #include <span>
 #include <string_view>
+#ifdef CPP_MODULES
 export module glaze.util.dump;
 import glaze.concepts.container_concepts;
 import glaze.core.opts;
 import glaze.util.convert;
 #else
-#include <bit>
-#include <cstddef>
-#include <cstring>
-#include <span>
-#include <string_view>
 #include "glaze/concepts/container_concepts.cppm"
 #include "glaze/core/opts.cppm"
 #include "glaze/util/convert.cppm"

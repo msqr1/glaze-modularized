@@ -1,17 +1,15 @@
 #pragma once
-#include "../../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../../Export.hpp"
 #include <cstdint>
 #include <limits>
 #include <string>
 #include <string_view>
+#ifdef CPP_MODULES
 export module glaze.rpc.repe.header;
 #else
-#include <cstdint>
-#include <limits>
-#include <string>
-#include <string_view>
 #endif
 
 // Glaze Library

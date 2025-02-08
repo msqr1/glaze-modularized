@@ -1,8 +1,10 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <initializer_list>
+#ifdef CPP_MODULES
 export module glaze.core.reflect;
 import glaze.beve.header;
 import glaze.core.common;
@@ -14,7 +16,6 @@ import glaze.reflection.to_tuple;
 #include "glaze/beve/header.cppm"
 #include "glaze/core/common.cppm"
 #include "glaze/util/primes_64.cppm"
-#include <initializer_list>
 #include "glaze/core/common.cppm"
 #include "glaze/reflection/get_name.cppm"
 #include "glaze/reflection/to_tuple.cppm"

@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <algorithm>
 #include <cassert>
 #include <iterator>
@@ -10,18 +11,11 @@ module;
 #include <shared_mutex>
 #include <utility>
 #include <vector>
+#ifdef CPP_MODULES
 export module glaze.thread.shared_async_map;
 import glaze.thread.value_proxy;
 import glaze.util.expected;
 #else
-#include <algorithm>
-#include <cassert>
-#include <iterator>
-#include <memory>
-#include <mutex>
-#include <shared_mutex>
-#include <utility>
-#include <vector>
 #include "glaze/thread/value_proxy.cppm"
 #include "glaze/util/expected.cppm"
 #endif

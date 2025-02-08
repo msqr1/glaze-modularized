@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <cstddef>
 #include <iterator>
@@ -9,6 +10,7 @@ module;
 #include <string>
 #include <type_traits>
 #include <vector>
+#ifdef CPP_MODULES
 export module glaze.core.common;
 import glaze.concepts.container_concepts;
 import glaze.core.context;
@@ -26,13 +28,6 @@ import glaze.util.utility;
 import glaze.util.validate;
 import glaze.util.variant;
 #else
-#include <array>
-#include <cstddef>
-#include <iterator>
-#include <optional>
-#include <string>
-#include <type_traits>
-#include <vector>
 #include "glaze/concepts/container_concepts.cppm"
 #include "glaze/core/context.cppm"
 #include "glaze/core/feature_test.cppm"

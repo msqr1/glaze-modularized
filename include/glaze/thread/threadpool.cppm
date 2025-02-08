@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <atomic>
 #include <condition_variable>
 #include <deque>
@@ -10,16 +11,9 @@ module;
 #include <mutex>
 #include <thread>
 #include <vector>
+#ifdef CPP_MODULES
 export module glaze.thread.threadpool;
 #else
-#include <atomic>
-#include <condition_variable>
-#include <deque>
-#include <functional>
-#include <future>
-#include <mutex>
-#include <thread>
-#include <vector>
 #endif
 
 // Glaze Library

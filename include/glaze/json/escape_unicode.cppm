@@ -1,14 +1,14 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstdint>
 #include <string>
+#ifdef CPP_MODULES
 export module glaze.json.escape_unicode;
 import glaze.util.string_literal;
 #else
-#include <cstdint>
-#include <string>
 #include "glaze/util/string_literal.cppm"
 #endif
 

@@ -1,19 +1,16 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cstdint>
 #include <deque>
 #include <memory>
 #include <mutex>
 #include <vector>
+#ifdef CPP_MODULES
 export module glaze.util.memory_pool;
 #else
-#include <cstdint>
-#include <deque>
-#include <memory>
-#include <mutex>
-#include <vector>
 #endif
 
 

@@ -1,14 +1,15 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <string>
+#ifdef CPP_MODULES
 export module glaze.util.help;
 import glaze.core.meta;
 import glaze.util.string_literal;
 import glaze.util.type_traits;
 #else
-#include <string>
 #include "glaze/core/meta.cppm"
 #include "glaze/util/string_literal.cppm"
 #include "glaze/util/type_traits.cppm"

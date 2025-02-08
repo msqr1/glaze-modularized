@@ -1,15 +1,14 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <cmath>
 #include <iostream>
 #include <string>
+#ifdef CPP_MODULES
 export module glaze.util.progress_bar;
 #else
-#include <cmath>
-#include <iostream>
-#include <string>
 #endif
 
 // Glaze Library

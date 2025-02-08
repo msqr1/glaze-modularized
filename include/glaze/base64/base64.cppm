@@ -1,15 +1,14 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <string_view>
 #include <vector>
+#ifdef CPP_MODULES
 export module glaze.base64.base64;
 #else
-#include <array>
-#include <string_view>
-#include <vector>
 #endif
 
 // Glaze Library

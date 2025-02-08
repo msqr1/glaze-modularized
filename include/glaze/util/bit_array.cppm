@@ -1,15 +1,14 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <array>
 #include <bit>
 #include <limits>
+#ifdef CPP_MODULES
 export module glaze.util.bit_array;
 #else
-#include <array>
-#include <bit>
-#include <limits>
 #endif
 
 // Glaze Library

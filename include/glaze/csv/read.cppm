@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <charconv>
 #define GLZ_CSV_NL                             \
    if (*it == '\n') {                          \
@@ -21,6 +22,7 @@ module;
       ctx.error = error_code::syntax_error;    \
       return;                                  \
    }
+#ifdef CPP_MODULES
 export module glaze.csv.read;
 import glaze.core.opts;
 import glaze.core.read;
@@ -29,7 +31,6 @@ import glaze.file.file_ops;
 import glaze.util.glaze_fast_float;
 import glaze.util.parse;
 #else
-#include <charconv>
 #include "glaze/core/opts.cppm"
 #include "glaze/core/read.cppm"
 #include "glaze/core/reflect.cppm"

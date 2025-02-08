@@ -1,7 +1,9 @@
 #pragma once
-#include "../../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../../Export.hpp"
+#ifdef CPP_MODULES
 export module glaze.rpc.repe.registry;
 import glaze.glaze;
 import glaze.rpc.repe.header;

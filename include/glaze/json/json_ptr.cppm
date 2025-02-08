@@ -1,10 +1,12 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <algorithm>
 #include <any>
 #include <charconv>
+#ifdef CPP_MODULES
 export module glaze.json.json_ptr;
 import glaze.core.seek;
 import glaze.json.read;
@@ -12,9 +14,6 @@ import glaze.json.skip;
 import glaze.util.parse;
 import glaze.util.string_literal;
 #else
-#include <algorithm>
-#include <any>
-#include <charconv>
 #include "glaze/core/seek.cppm"
 #include "glaze/json/read.cppm"
 #include "glaze/json/skip.cppm"

@@ -1,7 +1,8 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <charconv>
 #include <climits>
 #include <cwchar>
@@ -13,6 +14,7 @@ module;
    GLZ_SKIP_WS();          \
    GLZ_MATCH_COLON();      \
    GLZ_SKIP_WS();
+#ifdef CPP_MODULES
 export module glaze.json.read;
 import glaze.core.common;
 import glaze.core.opts;
@@ -26,13 +28,6 @@ import glaze.util.glaze_fast_float;
 import glaze.util.type_traits;
 import glaze.util.variant;
 #else
-#include <charconv>
-#include <climits>
-#include <cwchar>
-#include <filesystem>
-#include <iterator>
-#include <ranges>
-#include <type_traits>
 #include "glaze/core/common.cppm"
 #include "glaze/core/opts.cppm"
 #include "glaze/core/read.cppm"

@@ -1,12 +1,13 @@
 #pragma once
-#include "../../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../../Export.hpp"
 #include <unordered_set>
+#ifdef CPP_MODULES
 export module glaze.api.std.unordered_set;
 import glaze.core.meta;
 #else
-#include <unordered_set>
 #include "glaze/core/meta.cppm"
 #endif
 

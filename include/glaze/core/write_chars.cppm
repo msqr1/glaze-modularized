@@ -1,9 +1,11 @@
 #pragma once
-#include "../../Export.hpp"
 #ifdef CPP_MODULES
 module;
+#endif
+#include "../../Export.hpp"
 #include <charconv>
 #include <type_traits>
+#ifdef CPP_MODULES
 export module glaze.core.write_chars;
 import glaze.concepts.container_concepts;
 import glaze.core.opts;
@@ -11,8 +13,6 @@ import glaze.util.dtoa;
 import glaze.util.dump;
 import glaze.util.itoa;
 #else
-#include <charconv>
-#include <type_traits>
 #include "glaze/concepts/container_concepts.cppm"
 #include "glaze/core/opts.cppm"
 #include "glaze/util/dtoa.cppm"
