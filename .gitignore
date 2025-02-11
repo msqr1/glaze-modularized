@@ -48,3 +48,7 @@ Thumbs.db
 
 # Allow mock test data
 !tests/mock_json_test/json/*.json
+
+# Modularization
+importizer*
+include2

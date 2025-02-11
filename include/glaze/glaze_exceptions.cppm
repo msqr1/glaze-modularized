@@ -5,9 +5,9 @@ module;
 #include "../Export.hpp"
 #ifdef CPP_MODULES
 export module glaze.glaze_exceptions;
-import glaze.exceptions.binary_exceptions;
-import glaze.exceptions.csv_exceptions;
-import glaze.exceptions.json_exceptions;
+export import glaze.exceptions.binary_exceptions;
+export import glaze.exceptions.csv_exceptions;
+export import glaze.exceptions.json_exceptions;
 #else
 #if __cpp_exceptions
 #include "glaze/exceptions/binary_exceptions.cppm"

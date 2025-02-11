@@ -445,11 +445,6 @@ export module glaze.util.fast_float;
 #define GLZ_FASTFLOAT_DETAIL_MUST_DEFINE_CONSTEXPR_VARIABLE 1
 #endif
 
-// GLZ_FASTFLOAT_CONSTEXPR_FEATURE_DETECT_H
-
-
-
-
 
 #ifdef __has_include
 #if __has_include(<stdfloat>) && (__cplusplus > 202002L || _MSVC_LANG > 202002L)
@@ -1299,8 +1294,6 @@ constexpr chars_format adjust_for_feature_macros(chars_format fmt) {
 } // namespace fast_float
 
 
-// GLZ_FASTFLOAT_FAST_FLOAT_H
-
 namespace glz::fast_float {
 /**
  * This function parses the character sequence [first,last) for a number. It
@@ -1351,10 +1344,6 @@ GLZ_FASTFLOAT_CONSTEXPR20 from_chars_result_t<UC>
 from_chars(UC const *first, UC const *last, T &value, int base = 10) noexcept;
 
 } // namespace fast_float
-
-// GLZ_FASTFLOAT_ASCII_NUMBER_H
-
-
 
 
 
@@ -1923,11 +1912,6 @@ parse_int_string(UC const *p, UC const *pend, T &value,
 }
 
 } // namespace fast_float
-
-
-
-
-// GLZ_FASTFLOAT_FAST_TABLE_H
 
 
 namespace glz::fast_float {
@@ -2633,8 +2617,6 @@ using powers = powers_template<>;
 } // namespace fast_float
 
 
-// GLZ_FASTFLOAT_DECIMAL_TO_BINARY_H
-
 
 namespace glz::fast_float {
 
@@ -2834,8 +2816,6 @@ compute_float(int64_t q, uint64_t w) noexcept {
 
 } // namespace fast_float
 
-
-// GLZ_FASTFLOAT_BIGINT_H
 
 
 
@@ -3454,10 +3434,6 @@ struct bigint : pow5_tables<> {
 
 
 
-// GLZ_FASTFLOAT_DIGIT_COMPARISON_H
-
-
-
 namespace glz::fast_float {
 
 // 1e0 to 1e19
@@ -3899,9 +3875,6 @@ digit_comp(parsed_number_string_t<UC> &num, adjusted_mantissa am) noexcept {
 }
 
 } // namespace fast_float
-
-
-// GLZ_FASTFLOAT_PARSE_NUMBER_H
 
 
 namespace glz::fast_float {

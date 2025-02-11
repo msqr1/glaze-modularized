@@ -10,6 +10,7 @@ import glaze.beve.header;
 import glaze.core.opts;
 import glaze.core.reflect;
 import glaze.core.seek;
+import glaze.core.to;
 import glaze.core.write;
 import glaze.util.dump;
 import glaze.util.for_each;
@@ -19,6 +20,7 @@ import glaze.util.variant;
 #include "glaze/core/opts.cppm"
 #include "glaze/core/reflect.cppm"
 #include "glaze/core/seek.cppm"
+#include "glaze/core/to.cppm"
 #include "glaze/core/write.cppm"
 #include "glaze/util/dump.cppm"
 #include "glaze/util/for_each.cppm"
@@ -141,16 +143,6 @@ namespace glz
          GLZ_ALWAYS_INLINE static void op(auto&&, is_context auto&&, auto&&... args)
          {
             dump_type(uint8_t{0}, args...);
-         }
-      };
-
-      template <>
-      struct to<BEVE, hidden>
-      {
-         template <auto Opts>
-         GLZ_ALWAYS_INLINE static void op(auto&& value, auto&&, auto&&...)
-         {
-            static_assert(false_v<decltype(value)>, "hidden type should not be written");
          }
       };
 
@@ -825,16 +817,6 @@ namespace glz
                   (write<BEVE>::op<Opts>(glz::get<I>(value), ctx, args...), ...);
                }(std::make_index_sequence<N>{});
             }
-         }
-      };
-
-      template <filesystem_path T>
-      struct to<BEVE, T>
-      {
-         template <auto Opts, class... Args>
-         GLZ_ALWAYS_INLINE static void op(auto&& value, Args&&... args)
-         {
-            to<BEVE, decltype(value.string())>::template op<Opts>(value.string(), std::forward<Args>(args)...);
          }
       };
 

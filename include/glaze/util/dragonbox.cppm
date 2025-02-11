@@ -361,10 +361,11 @@ export module glaze.util.dragonbox;
 // is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 // KIND, either express or implied.
 
-
 // Attribute for storing static data into a dedicated place, e.g. flash memory. Every ODR-used
 // static data declaration will be decorated with this macro. The users may define this macro,
 // before including the library headers, into whatever they want.
+
+
 #ifndef GLZ_JKJ_STATIC_DATA_SECTION
 #define GLZ_JKJ_STATIC_DATA_SECTION
 #else

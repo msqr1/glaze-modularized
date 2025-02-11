@@ -21,6 +21,7 @@ module;
 export module glaze.json.write;
 import glaze.core.opts;
 import glaze.core.reflect;
+import glaze.core.to;
 import glaze.core.write;
 import glaze.core.write_chars;
 import glaze.json.ptr;
@@ -35,6 +36,7 @@ import glaze.util.itoa;
 #endif
 #include "glaze/core/opts.cppm"
 #include "glaze/core/reflect.cppm"
+#include "glaze/core/to.cppm"
 #include "glaze/core/write.cppm"
 #include "glaze/core/write_chars.cppm"
 #include "glaze/json/ptr.cppm"
@@ -91,9 +93,6 @@ namespace glz
                                            std::forward<Ctx>(ctx), std::forward<B>(b), std::forward<IX>(ix));
          }
       };
-
-      template <class T>
-      concept nullable_like = nullable_t<T> && (!is_expected<T> && !std::is_array_v<T>);
 
       // Returns 0 if we cannot determine the required padding,
       // in which case the `to` specialization must allocate buffer space
@@ -234,26 +233,6 @@ namespace glz
          }
       };
 
-      template <>
-      struct to<JSON, hidden>
-      {
-         template <auto Opts>
-         static void op(auto&& value, auto&&...) noexcept
-         {
-            static_assert(false_v<decltype(value)>, "hidden type should not be written");
-         }
-      };
-
-      template <>
-      struct to<JSON, skip>
-      {
-         template <auto Opts>
-         static void op(auto&& value, auto&&...) noexcept
-         {
-            static_assert(false_v<decltype(value)>, "skip type should not be written");
-         }
-      };
-
       template <is_member_function_pointer T>
       struct to<JSON, T>
       {
@@ -366,7 +345,7 @@ namespace glz
          }
       };
 
-      constexpr std::array<uint16_t, 256> char_escape_table = [] {
+      inline constexpr std::array<uint16_t, 256> char_escape_table = [] {
          auto combine = [](const char chars[2]) -> uint16_t { return uint16_t(chars[0]) | (uint16_t(chars[1]) << 8); };
 
          std::array<uint16_t, 256> t{};
@@ -676,16 +655,6 @@ namespace glz
          }
       };
 
-      template <filesystem_path T>
-      struct to<JSON, T>
-      {
-         template <auto Opts, class... Args>
-         static void op(auto&& value, is_context auto&& ctx, Args&&... args)
-         {
-            to<JSON, decltype(value.string())>::template op<Opts>(value.string(), ctx, std::forward<Args>(args)...);
-         }
-      };
-
       template <class T>
          requires((glaze_enum_t<T> || (meta_keys<T> && std::is_enum_v<std::decay_t<T>>)) && not custom_write<T>)
       struct to<JSON, T>
@@ -883,50 +852,6 @@ namespace glz
       template <class T>
       concept array_padding_known =
          requires { typename T::value_type; } && (required_padding<typename T::value_type>() > 0);
-
-      template <class Container>
-      using iterator_pair_type =
-         typename std::iterator_traits<decltype(std::begin(std::declval<Container&>()))>::value_type;
-
-      template <class Container, typename Iterator = iterator_pair_type<Container>>
-      struct iterator_second_impl;
-
-      template <class Container, typename Iterator>
-         requires has_value_type<Iterator>
-      struct iterator_second_impl<Container, Iterator>
-      {
-         using type = typename Iterator::value_type;
-      };
-
-      template <class Container, typename Iterator>
-         requires(!has_value_type<Iterator> && has_second_type<Iterator>)
-      struct iterator_second_impl<Container, Iterator>
-      {
-         using type = typename Iterator::second_type;
-      };
-
-      template <class Container>
-      using iterator_second_type = typename iterator_second_impl<Container>::type;
-
-      template <class Container, typename Iterator = iterator_pair_type<Container>>
-      struct iterator_first_impl;
-
-      template <class Container, typename Iterator>
-         requires has_value_type<Iterator>
-      struct iterator_first_impl<Container, Iterator>
-      {
-         using type = typename Iterator::value_type;
-      };
-
-      template <class Container, typename Iterator>
-         requires(!has_value_type<Iterator> && has_first_type<Iterator>)
-      struct iterator_first_impl<Container, Iterator>
-      {
-         using type = typename Iterator::first_type;
-      };
-
-      template <class Container>
-      using iterator_first_type = typename iterator_first_impl<Container>::type;
 
       template <class T>
          requires(writable_array_t<T> || writable_map_t<T>)
@@ -1338,8 +1263,8 @@ namespace glz
       template <is_variant T>
       struct to<JSON, T>
       {
-         template <auto Opts, class... Args>
-         static void op(auto&& value, is_context auto&& ctx, auto&& b, auto&& ix)
+         template <auto Opts, class B>
+         static void op(auto&& value, is_context auto&& ctx, B&& b, auto&& ix)
          {
             std::visit(
                [&](auto&& val) {
@@ -1377,7 +1302,32 @@ namespace glz
                            dump<R"(",)">(b, ix);
                         }
                      }
-                     to<JSON, V>::template op<opening_handled<Opts>()>(val, ctx, b, ix);
+                     to<JSON, V>::template op<opening_and_closing_handled<Opts>()>(val, ctx, b, ix);
+                     // If we skip everything then we may have an extra comma, which we want to revert
+                     if constexpr (Opts.skip_null_members) {
+                        if (b[ix - 1] == ',') {
+                           --ix;
+                        }
+                     }
+
+                     if constexpr (Opts.prettify) {
+                        ctx.indentation_level -= Opts.indentation_width;
+                        if constexpr (vector_like<B>) {
+                           if (const auto k = ix + ctx.indentation_level + write_padding_bytes; k > b.size())
+                              [[unlikely]] {
+                              b.resize(2 * k);
+                           }
+                        }
+                        std::memcpy(&b[ix], "\n", 1);
+                        ++ix;
+                        std::memset(&b[ix], Opts.indentation_char, ctx.indentation_level);
+                        ix += ctx.indentation_level;
+                        std::memcpy(&b[ix], "}", 1);
+                        ++ix;
+                     }
+                     else {
+                        dump<'}'>(b, ix);
+                     }
                   }
                   else {
                      to<JSON, V>::template op<Opts>(val, ctx, b, ix);
@@ -1645,20 +1595,6 @@ namespace glz
             dump<'}'>(b, ix);
          }
       };
-
-      template <class T>
-      inline constexpr size_t maximum_key_size = [] {
-         constexpr auto N = reflect<T>::size;
-         size_t maximum{};
-         for (size_t i = 0; i < N; ++i) {
-            if (reflect<T>::keys[i].size() > maximum) {
-               maximum = reflect<T>::keys[i].size();
-            }
-         }
-         return maximum + 2; // add quotes
-      }();
-
-      inline constexpr uint64_t round_up_to_nearest_16(const uint64_t value) noexcept { return (value + 15) & ~15ull; }
 
       // Only use this if you are not prettifying
       // Returns zero if the fixed size cannot be determined

@@ -5,12 +5,12 @@ module;
 #include "../Export.hpp"
 #ifdef CPP_MODULES
 export module glaze.beve;
-import glaze.beve.header;
-import glaze.beve.ptr;
-import glaze.beve.read;
-import glaze.beve.wrappers;
-import glaze.beve.write;
-import glaze.thread.atomic;
+export import glaze.beve.header;
+export import glaze.beve.ptr;
+export import glaze.beve.read;
+export import glaze.beve.wrappers;
+export import glaze.beve.write;
+export import glaze.thread.atomic;
 #else
 #include "glaze/beve/header.cppm"
 #include "glaze/beve/ptr.cppm"

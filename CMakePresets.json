@@ -13,6 +13,10 @@
             "binaryDir": "${sourceDir}/build",
             "generator": "Ninja",
             "cacheVariables": {
+                "CMAKE_CXX_COMPILER": "clang++-19",
+                "CMAKE_CXX_FLAGS": "-stdlib=libc++ -w",
+                "CMAKE_C_COMPILER": "clang-19",
+                "CMAKE_C_FLAGS": "-stdlib=libc++ -w",
                 "CMAKE_BUILD_TYPE": "Debug",
                 "glaze_DEVELOPER_MODE": true,
                 "BUILD_TESTING": true,

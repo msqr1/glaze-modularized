@@ -5,15 +5,15 @@ module;
 #include "../Export.hpp"
 #ifdef CPP_MODULES
 export module glaze.glaze;
-import glaze.beve;
-import glaze.beve.beve_to_json;
-import glaze.csv;
-import glaze.file.file_ops;
-import glaze.file.read_directory;
-import glaze.file.write_directory;
-import glaze.json;
-import glaze.record.recorder;
-import glaze.stencil.stencil;
+export import glaze.beve;
+export import glaze.beve.beve_to_json;
+export import glaze.csv;
+export import glaze.file.file_ops;
+export import glaze.file.read_directory;
+export import glaze.file.write_directory;
+export import glaze.json;
+export import glaze.record.recorder;
+export import glaze.stencil.stencil;
 #else
 #include "glaze/beve.cppm"
 #include "glaze/beve/beve_to_json.cppm"

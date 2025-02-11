@@ -5,24 +5,24 @@ module;
 #include "../Export.hpp"
 #ifdef CPP_MODULES
 export module glaze.json;
-import glaze.json.escape_unicode;
-import glaze.json.invoke;
-import glaze.json.jmespath;
-import glaze.json.json_concepts;
-import glaze.json.json_ptr;
-import glaze.json.json_t;
-import glaze.json.manage;
-import glaze.json.max_write_precision;
-import glaze.json.minify;
-import glaze.json.ndjson;
-import glaze.json.prettify;
-import glaze.json.ptr;
-import glaze.json.raw_string;
-import glaze.json.read;
-import glaze.json.schema;
-import glaze.json.wrappers;
-import glaze.json.write;
-import glaze.thread.atomic;
+export import glaze.json.escape_unicode;
+export import glaze.json.invoke;
+export import glaze.json.jmespath;
+export import glaze.json.json_concepts;
+export import glaze.json.json_ptr;
+export import glaze.json.json_t;
+export import glaze.json.manage;
+export import glaze.json.max_write_precision;
+export import glaze.json.minify;
+export import glaze.json.ndjson;
+export import glaze.json.prettify;
+export import glaze.json.ptr;
+export import glaze.json.raw_string;
+export import glaze.json.read;
+export import glaze.json.schema;
+export import glaze.json.wrappers;
+export import glaze.json.write;
+export import glaze.thread.atomic;
 #else
 #include "glaze/json/escape_unicode.cppm"
 #include "glaze/json/invoke.cppm"
