@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,14 +15,9 @@ import glaze.util.inline;
 #include "glaze/util/inline.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
 // This is an adapter to speed up the parsing portion of the fast_float conversion
 
-
-namespace glz
+EXPORT namespace glz
 {
    // Assuming that you use no more than 19 digits, this will
    // parse an ASCII string.

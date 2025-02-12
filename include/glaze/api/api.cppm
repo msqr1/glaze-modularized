@@ -26,13 +26,7 @@ import glaze.util.expected;
 #include "glaze/util/expected.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    inline namespace v0_0_3
    {

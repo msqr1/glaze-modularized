@@ -1,52 +1,5 @@
-#pragma once
-#ifdef CPP_MODULES
-module;
-#endif
-#include "../../Export.hpp"
-#include <utility>
-#include <version>
-#ifndef GLZ_THROW_OR_ABORT
-#if __cpp_exceptions
-#define GLZ_THROW_OR_ABORT(EXC) (throw(EXC))
-#define GLZ_NOEXCEPT noexcept(false)
-#else
-#define GLZ_THROW_OR_ABORT(EXC) (std::abort())
-#define GLZ_NOEXCEPT noexcept(true)
-#endif
-#endif
-#if __cpp_exceptions
-#include <stdexcept>
-#endif
-#ifdef __has_include
-#if __has_include(<expected>) && __cpp_lib_expected >= 202202L
-#include <expected>
-#elif __has_include(<experimental/expected>)
-#include <experimental/expected>
-#endif
-#endif
-#if defined(__cpp_lib_expected)
-#else
-#include <concepts>
-#include <deque>
-#include <exception>
-#include <functional>
-#include <memory>
-#include <type_traits>
-#include <variant>
-#endif
-#ifdef CPP_MODULES
-export module glaze.util.expected;
-#else
-#ifndef GLZ_THROW_OR_ABORT
-#if __cpp_exceptions
-#define GLZ_THROW_OR_ABORT(EXC) (throw(EXC))
-#define GLZ_NOEXCEPT noexcept(false)
-#else
-#define GLZ_THROW_OR_ABORT(EXC) (std::abort())
-#define GLZ_NOEXCEPT noexcept(true)
-#endif
-#endif
-#endif
+// Glaze Library
+// For the license information refer to glaze.hpp
 
 /*
  * MIT License
@@ -72,7 +25,37 @@ export module glaze.util.expected;
  * SOFTWARE.
  */
 
-
+#pragma once
+#ifdef CPP_MODULES
+module;
+#endif
+#include "../../Export.hpp"
+#include <utility>
+#include <version>
+#if __cpp_exceptions
+#include <stdexcept>
+#endif
+#ifdef __has_include
+#if __has_include(<expected>) && __cpp_lib_expected >= 202202L
+#include <expected>
+#elif __has_include(<experimental/expected>)
+#include <experimental/expected>
+#endif
+#endif
+#if defined(__cpp_lib_expected)
+#else
+#include <concepts>
+#include <deque>
+#include <exception>
+#include <functional>
+#include <memory>
+#include <type_traits>
+#include <variant>
+#endif
+#ifdef CPP_MODULES
+export module glaze.util.expected;
+#else
+#endif
 
 #ifndef GLZ_THROW_OR_ABORT
 #if __cpp_exceptions
@@ -84,8 +67,7 @@ export module glaze.util.expected;
 #endif
 #endif
 
-#if __cpp_exceptions
-#endif
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -94,12 +76,6 @@ namespace glz
       GLZ_THROW_OR_ABORT(std::runtime_error(msg));
    }
 }
-
-#ifdef __has_include
-#if __has_include(<expected>) && __cpp_lib_expected >= 202202L
-#elif __has_include(<experimental/expected>)
-#endif
-#endif
 
 #if defined(__cpp_lib_expected)
 namespace glz
@@ -1559,5 +1535,7 @@ namespace glz
    };
 
 }
+
+END_EXPORT
 
 #endif

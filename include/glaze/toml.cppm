@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -9,8 +12,3 @@ export import glaze.toml.write;
 #else
 #include "glaze/toml/write.cppm"
 #endif
-
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-

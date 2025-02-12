@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -16,12 +19,7 @@ import glaze.util.parse;
 #include "glaze/util/parse.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    enum struct json_type : char {
       Unset = 'x',

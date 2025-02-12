@@ -35,6 +35,8 @@ import glaze.util.string_literal;
 #include "glaze/util/string_literal.cppm"
 #endif
 
+BEGIN_EXPORT
+
 namespace glz::detail
 {
    inline constexpr std::array<bool, 256> numeric_table = [] {
@@ -1434,3 +1436,5 @@ namespace glz
       }
    }
 }
+
+END_EXPORT

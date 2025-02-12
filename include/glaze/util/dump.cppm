@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -19,13 +22,7 @@ import glaze.util.convert;
 #include "glaze/util/convert.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    template <class T, class V = std::remove_cvref_t<T>>
    concept byte_sized = sizeof(T) == 1 && (std::same_as<V, char> || std::same_as<V, std::byte>);

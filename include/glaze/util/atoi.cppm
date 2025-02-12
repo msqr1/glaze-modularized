@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -19,9 +22,6 @@ import glaze.util.type_traits;
 #include "glaze/util/inline.cppm"
 #include "glaze/util/type_traits.cppm"
 #endif
-
-
-
 
 // Characters to integer parsing
 
@@ -57,6 +57,8 @@ import glaze.util.type_traits;
 #pragma warning(push)
 #pragma warning(disable : 4244)
 #endif
+
+BEGIN_EXPORT
 
 namespace glz::detail
 {
@@ -955,3 +957,5 @@ namespace glz::detail
 // restore disabled warnings
 #pragma warning(pop)
 #endif
+
+END_EXPORT

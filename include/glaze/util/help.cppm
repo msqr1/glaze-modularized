@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -15,13 +18,7 @@ import glaze.util.type_traits;
 #include "glaze/util/type_traits.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    template <class T>
    concept is_help = requires { requires(T::glaze_help == true); };

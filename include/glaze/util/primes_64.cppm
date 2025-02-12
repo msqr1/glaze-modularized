@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -10,12 +13,7 @@ export module glaze.util.primes_64;
 #else
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    // Array of random 64bit primes to avoid needing a generator
    // If you have a 10% chance of success, 128 tries has 1 : 719'380 odds of failure

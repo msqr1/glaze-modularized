@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -22,17 +25,13 @@ import glaze.util.expected;
 #include "glaze/util/expected.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 #ifdef _MSC_VER
 // Turn off broken MSVC warning for "declaration of 'v' hides previous local declaration"
 #pragma warning(push)
 #pragma warning(disable : 4456)
 #endif
+
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -391,3 +390,5 @@ namespace glz
 // restore disabled warning
 #pragma warning(pop)
 #endif
+
+END_EXPORT

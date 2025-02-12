@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -24,13 +27,7 @@ import glaze.util.type_traits;
 #include "glaze/util/type_traits.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    using basic = std::variant<bool, char, char8_t, unsigned char, signed char, short, unsigned short, float, int,
                               unsigned int, long, unsigned long, double, long long, unsigned long long, std::string>;

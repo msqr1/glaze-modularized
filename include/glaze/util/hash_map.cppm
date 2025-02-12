@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -25,12 +28,6 @@ import glaze.util.compare;
 #include "glaze/util/compare.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 #ifdef _MSC_VER
 // Turn off broken warning from MSVC for << operator precedence
 #pragma warning(push)
@@ -48,6 +45,8 @@ import glaze.util.compare;
 // To provide a mechanism to short circuit hashing when we know an unknown key is provided
 // we allow hashing algorithms to return the seed when a hash does not need to be performed.
 // To improve performance, we can ensure that the seed never hashes with any of the buckets as well.
+
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -796,3 +795,5 @@ namespace glz::detail
 // restore disabled warning
 #pragma warning(pop)
 #endif
+
+END_EXPORT

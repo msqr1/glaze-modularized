@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -10,14 +13,9 @@ import glaze.json.json_format;
 #include "glaze/json/json_format.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
 // Minified JSONC only works with /**/ style comments, so we only supports this
 
-
-namespace glz
+EXPORT namespace glz
 {
    namespace detail
    {

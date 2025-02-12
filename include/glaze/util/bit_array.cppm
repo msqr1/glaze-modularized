@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -11,12 +14,7 @@ export module glaze.util.bit_array;
 #else
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    // Basicly std::bitset but exposes things normally not availible like the bitscan functions
    template <size_t N, std::unsigned_integral Chunk = uint64_t>

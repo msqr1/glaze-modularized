@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -9,12 +12,7 @@ export module glaze.util.utility;
 #else
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    // TODO: replace with std::unreachable
    [[noreturn]] inline void unreachable() noexcept

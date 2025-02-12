@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -11,12 +14,7 @@ export module glaze.util.progress_bar;
 #else
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    struct progress_bar final
    {

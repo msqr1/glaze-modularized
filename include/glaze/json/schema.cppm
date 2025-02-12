@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -42,10 +45,9 @@ import glaze.json.write;
 #include "glaze/json/write.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
 // We include naming metas for standard types for consistency across compilers
+
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -712,3 +714,5 @@ namespace glz
       return {buffer};
    }
 }
+
+END_EXPORT

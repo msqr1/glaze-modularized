@@ -1,31 +1,3 @@
-#pragma once
-#ifdef CPP_MODULES
-module;
-#endif
-#include "../Export.hpp"
-#ifdef CPP_MODULES
-export module glaze.glaze;
-export import glaze.beve;
-export import glaze.beve.beve_to_json;
-export import glaze.csv;
-export import glaze.file.file_ops;
-export import glaze.file.read_directory;
-export import glaze.file.write_directory;
-export import glaze.json;
-export import glaze.record.recorder;
-export import glaze.stencil.stencil;
-#else
-#include "glaze/beve.cppm"
-#include "glaze/beve/beve_to_json.cppm"
-#include "glaze/csv.cppm"
-#include "glaze/file/file_ops.cppm"
-#include "glaze/file/read_directory.cppm"
-#include "glaze/file/write_directory.cppm"
-#include "glaze/json.cppm"
-#include "glaze/record/recorder.cppm"
-#include "glaze/stencil/stencil.cppm"
-#endif
-
 /*
   Glaze Library
 
@@ -58,4 +30,30 @@ export import glaze.stencil.stencil;
   without including the above copyright and permission notices.
  */
 
-
+#pragma once
+#ifdef CPP_MODULES
+module;
+#endif
+#include "../Export.hpp"
+#ifdef CPP_MODULES
+export module glaze.glaze;
+export import glaze.beve;
+export import glaze.beve.beve_to_json;
+export import glaze.csv;
+export import glaze.file.file_ops;
+export import glaze.file.read_directory;
+export import glaze.file.write_directory;
+export import glaze.json;
+export import glaze.record.recorder;
+export import glaze.stencil.stencil;
+#else
+#include "glaze/beve.cppm"
+#include "glaze/beve/beve_to_json.cppm"
+#include "glaze/csv.cppm"
+#include "glaze/file/file_ops.cppm"
+#include "glaze/file/read_directory.cppm"
+#include "glaze/file/write_directory.cppm"
+#include "glaze/json.cppm"
+#include "glaze/record/recorder.cppm"
+#include "glaze/stencil/stencil.cppm"
+#endif

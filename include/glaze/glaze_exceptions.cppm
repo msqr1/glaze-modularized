@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -16,16 +19,11 @@ export import glaze.exceptions.json_exceptions;
 #endif
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
 #if __cpp_exceptions
 
 // These files provide convenience functions that throw C++ exceptions, which can make code cleaner for users
 
-
-namespace glz::ex
+EXPORT namespace glz::ex
 {
    template <opts Opts>
    void read(auto& value, auto&& buffer)

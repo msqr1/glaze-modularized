@@ -1,349 +1,3 @@
-#pragma once
-#ifdef CPP_MODULES
-module;
-#endif
-#include "../../Export.hpp"
-#ifndef GLZ_JKJ_STATIC_DATA_SECTION
-#define GLZ_JKJ_STATIC_DATA_SECTION
-#else
-#define GLZ_JKJ_STATIC_DATA_SECTION_DEFINED 1
-#endif
-#ifndef GLZ_JKJ_STD_REPLACEMENT_NAMESPACE
-#define GLZ_JKJ_STD_REPLACEMENT_NAMESPACE std
-#include <cassert>
-#include <cstdint>
-#include <cstring>
-#include <limits>
-#include <type_traits>
-#ifdef __has_include
-#if __has_include(<version>)
-#include <version>
-#endif
-#endif
-#else
-#define GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED 1
-#endif
-#if defined(__cpp_constexpr) && __cpp_constexpr >= 201304L
-#define GLZ_JKJ_HAS_CONSTEXPR14 1
-#elif __cplusplus >= 201402L
-#define GLZ_JKJ_HAS_CONSTEXPR14 1
-#elif defined(_MSC_VER) && _MSC_VER >= 1910 && _MSVC_LANG >= 201402L
-#define GLZ_JKJ_HAS_CONSTEXPR14 1
-#else
-#define GLZ_JKJ_HAS_CONSTEXPR14 0
-#endif
-#if GLZ_JKJ_HAS_CONSTEXPR14
-#define GLZ_JKJ_CONSTEXPR14 constexpr
-#else
-#define GLZ_JKJ_CONSTEXPR14
-#endif
-#if defined(__cpp_constexpr) && __cpp_constexpr >= 201603L
-#define GLZ_JKJ_HAS_CONSTEXPR17 1
-#elif __cplusplus >= 201703L
-#define GLZ_JKJ_HAS_CONSTEXPR17 1
-#elif defined(_MSC_VER) && _MSC_VER >= 1911 && _MSVC_LANG >= 201703L
-#define GLZ_JKJ_HAS_CONSTEXPR17 1
-#else
-#define GLZ_JKJ_HAS_CONSTEXPR17 0
-#endif
-#if defined(__cpp_inline_variables) && __cpp_inline_variables >= 201606L
-#define GLZ_JKJ_HAS_INLINE_VARIABLE 1
-#elif __cplusplus >= 201703L
-#define GLZ_JKJ_HAS_INLINE_VARIABLE 1
-#elif defined(_MSC_VER) && _MSC_VER >= 1912 && _MSVC_LANG >= 201703L
-#define GLZ_JKJ_HAS_INLINE_VARIABLE 1
-#else
-#define GLZ_JKJ_HAS_INLINE_VARIABLE 0
-#endif
-#if GLZ_JKJ_HAS_INLINE_VARIABLE
-#define GLZ_JKJ_INLINE_VARIABLE inline constexpr
-#else
-#define GLZ_JKJ_INLINE_VARIABLE static constexpr
-#endif
-#if defined(__cpp_if_constexpr) && __cpp_if_constexpr >= 201606L
-#define GLZ_JKJ_HAS_IF_CONSTEXPR 1
-#elif __cplusplus >= 201703L
-#define GLZ_JKJ_HAS_IF_CONSTEXPR 1
-#elif defined(_MSC_VER) && _MSC_VER >= 1911 && _MSVC_LANG >= 201703L
-#define GLZ_JKJ_HAS_IF_CONSTEXPR 1
-#else
-#define GLZ_JKJ_HAS_IF_CONSTEXPR 0
-#endif
-#if GLZ_JKJ_HAS_IF_CONSTEXPR
-#define GLZ_JKJ_IF_CONSTEXPR if constexpr
-#else
-#define GLZ_JKJ_IF_CONSTEXPR if
-#endif
-#if GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED
-#if GLZ_JKJ_STD_REPLACEMENT_HAS_BIT_CAST
-#define GLZ_JKJ_HAS_BIT_CAST 1
-#else
-#define GLZ_JKJ_HAS_BIT_CAST 0
-#endif
-#elif defined(__cpp_lib_bit_cast) && __cpp_lib_bit_cast >= 201806L
-#include <bit>
-#define GLZ_JKJ_HAS_BIT_CAST 1
-#else
-#define GLZ_JKJ_HAS_BIT_CAST 0
-#endif
-#if defined(__cpp_if_consteval) && __cpp_is_consteval >= 202106L
-#define GLZ_JKJ_IF_CONSTEVAL if consteval
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if !consteval
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 1
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#elif GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED
-#if GLZ_JKJ_STD_REPLACEMENT_HAS_IS_CONSTANT_EVALUATED
-#define GLZ_JKJ_IF_CONSTEVAL if (stdr::is_constant_evaluated())
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if (!stdr::is_constant_evaluated())
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 1
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 1
-#elif GLZ_JKJ_HAS_IF_CONSTEXPR
-#define GLZ_JKJ_IF_CONSTEVAL if constexpr (false)
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if constexpr (true)
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 0
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#else
-#define GLZ_JKJ_IF_CONSTEVAL if (false)
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if (true)
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 0
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#endif
-#else
-#if defined(__cpp_lib_is_constant_evaluated) && __cpp_lib_is_constant_evaluated >= 201811L
-#define GLZ_JKJ_IF_CONSTEVAL if (stdr::is_constant_evaluated())
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if (!stdr::is_constant_evaluated())
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 1
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 1
-#elif GLZ_JKJ_HAS_IF_CONSTEXPR
-#define GLZ_JKJ_IF_CONSTEVAL if constexpr (false)
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if constexpr (true)
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 0
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#else
-#define GLZ_JKJ_IF_CONSTEVAL if (false)
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if (true)
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 0
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#endif
-#endif
-#if GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL && GLZ_JKJ_HAS_BIT_CAST
-#define GLZ_JKJ_CONSTEXPR20 constexpr
-#else
-#define GLZ_JKJ_CONSTEXPR20
-#endif
-#if defined(__GNUC__) || defined(__clang__)
-#define GLZ_JKJ_SAFEBUFFERS
-#define GLZ_JKJ_FORCEINLINE inline __attribute__((always_inline))
-#elif defined(_MSC_VER)
-#define GLZ_JKJ_SAFEBUFFERS __declspec(safebuffers)
-#define GLZ_JKJ_FORCEINLINE __forceinline
-#else
-#define GLZ_JKJ_SAFEBUFFERS
-#define GLZ_JKJ_FORCEINLINE inline
-#endif
-#if defined(__has_builtin)
-#define GLZ_JKJ_HAS_BUILTIN(x) __has_builtin(x)
-#else
-#define GLZ_JKJ_HAS_BUILTIN(x) false
-#endif
-#if defined(_MSC_VER)
-#include <intrin.h>
-#elif defined(__INTEL_COMPILER)
-#include <immintrin.h>
-#endif
-#undef min
-#undef max
-#undef GLZ_JKJ_HAS_BUILTIN
-#undef GLZ_JKJ_FORCEINLINE
-#undef GLZ_JKJ_SAFEBUFFERS
-#undef GLZ_JKJ_CONSTEXPR20
-#undef GLZ_JKJ_USE_IS_CONSTANT_EVALUATED
-#undef GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL
-#undef GLZ_JKJ_IF_NOT_CONSTEVAL
-#undef GLZ_JKJ_IF_CONSTEVAL
-#undef GLZ_JKJ_HAS_BIT_CAST
-#undef GLZ_JKJ_IF_CONSTEXPR
-#undef GLZ_JKJ_HAS_IF_CONSTEXPR
-#undef GLZ_JKJ_INLINE_VARIABLE
-#undef GLZ_JKJ_HAS_INLINE_VARIABLE
-#undef GLZ_JKJ_HAS_CONSTEXPR17
-#undef GLZ_JKJ_CONSTEXPR14
-#undef GLZ_JKJ_HAS_CONSTEXPR14
-#if GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED
-#undef GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED
-#else
-#undef GLZ_JKJ_STD_REPLACEMENT_NAMESPACE
-#endif
-#if GLZ_JKJ_STATIC_DATA_SECTION_DEFINED
-#undef GLZ_JKJ_STATIC_DATA_SECTION_DEFINED
-#else
-#undef GLZ_JKJ_STATIC_DATA_SECTION
-#endif
-#ifdef CPP_MODULES
-export module glaze.util.dragonbox;
-#else
-#ifndef GLZ_JKJ_STATIC_DATA_SECTION
-#define GLZ_JKJ_STATIC_DATA_SECTION
-#else
-#define GLZ_JKJ_STATIC_DATA_SECTION_DEFINED 1
-#endif
-#ifndef GLZ_JKJ_STD_REPLACEMENT_NAMESPACE
-#define GLZ_JKJ_STD_REPLACEMENT_NAMESPACE std
-#else
-#define GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED 1
-#endif
-#if defined(__cpp_constexpr) && __cpp_constexpr >= 201304L
-#define GLZ_JKJ_HAS_CONSTEXPR14 1
-#elif __cplusplus >= 201402L
-#define GLZ_JKJ_HAS_CONSTEXPR14 1
-#elif defined(_MSC_VER) && _MSC_VER >= 1910 && _MSVC_LANG >= 201402L
-#define GLZ_JKJ_HAS_CONSTEXPR14 1
-#else
-#define GLZ_JKJ_HAS_CONSTEXPR14 0
-#endif
-#if GLZ_JKJ_HAS_CONSTEXPR14
-#define GLZ_JKJ_CONSTEXPR14 constexpr
-#else
-#define GLZ_JKJ_CONSTEXPR14
-#endif
-#if defined(__cpp_constexpr) && __cpp_constexpr >= 201603L
-#define GLZ_JKJ_HAS_CONSTEXPR17 1
-#elif __cplusplus >= 201703L
-#define GLZ_JKJ_HAS_CONSTEXPR17 1
-#elif defined(_MSC_VER) && _MSC_VER >= 1911 && _MSVC_LANG >= 201703L
-#define GLZ_JKJ_HAS_CONSTEXPR17 1
-#else
-#define GLZ_JKJ_HAS_CONSTEXPR17 0
-#endif
-#if defined(__cpp_inline_variables) && __cpp_inline_variables >= 201606L
-#define GLZ_JKJ_HAS_INLINE_VARIABLE 1
-#elif __cplusplus >= 201703L
-#define GLZ_JKJ_HAS_INLINE_VARIABLE 1
-#elif defined(_MSC_VER) && _MSC_VER >= 1912 && _MSVC_LANG >= 201703L
-#define GLZ_JKJ_HAS_INLINE_VARIABLE 1
-#else
-#define GLZ_JKJ_HAS_INLINE_VARIABLE 0
-#endif
-#if GLZ_JKJ_HAS_INLINE_VARIABLE
-#define GLZ_JKJ_INLINE_VARIABLE inline constexpr
-#else
-#define GLZ_JKJ_INLINE_VARIABLE static constexpr
-#endif
-#if defined(__cpp_if_constexpr) && __cpp_if_constexpr >= 201606L
-#define GLZ_JKJ_HAS_IF_CONSTEXPR 1
-#elif __cplusplus >= 201703L
-#define GLZ_JKJ_HAS_IF_CONSTEXPR 1
-#elif defined(_MSC_VER) && _MSC_VER >= 1911 && _MSVC_LANG >= 201703L
-#define GLZ_JKJ_HAS_IF_CONSTEXPR 1
-#else
-#define GLZ_JKJ_HAS_IF_CONSTEXPR 0
-#endif
-#if GLZ_JKJ_HAS_IF_CONSTEXPR
-#define GLZ_JKJ_IF_CONSTEXPR if constexpr
-#else
-#define GLZ_JKJ_IF_CONSTEXPR if
-#endif
-#if GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED
-#if GLZ_JKJ_STD_REPLACEMENT_HAS_BIT_CAST
-#define GLZ_JKJ_HAS_BIT_CAST 1
-#else
-#define GLZ_JKJ_HAS_BIT_CAST 0
-#endif
-#elif defined(__cpp_lib_bit_cast) && __cpp_lib_bit_cast >= 201806L
-#define GLZ_JKJ_HAS_BIT_CAST 1
-#else
-#define GLZ_JKJ_HAS_BIT_CAST 0
-#endif
-#if defined(__cpp_if_consteval) && __cpp_is_consteval >= 202106L
-#define GLZ_JKJ_IF_CONSTEVAL if consteval
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if !consteval
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 1
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#elif GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED
-#if GLZ_JKJ_STD_REPLACEMENT_HAS_IS_CONSTANT_EVALUATED
-#define GLZ_JKJ_IF_CONSTEVAL if (stdr::is_constant_evaluated())
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if (!stdr::is_constant_evaluated())
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 1
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 1
-#elif GLZ_JKJ_HAS_IF_CONSTEXPR
-#define GLZ_JKJ_IF_CONSTEVAL if constexpr (false)
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if constexpr (true)
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 0
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#else
-#define GLZ_JKJ_IF_CONSTEVAL if (false)
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if (true)
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 0
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#endif
-#else
-#if defined(__cpp_lib_is_constant_evaluated) && __cpp_lib_is_constant_evaluated >= 201811L
-#define GLZ_JKJ_IF_CONSTEVAL if (stdr::is_constant_evaluated())
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if (!stdr::is_constant_evaluated())
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 1
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 1
-#elif GLZ_JKJ_HAS_IF_CONSTEXPR
-#define GLZ_JKJ_IF_CONSTEVAL if constexpr (false)
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if constexpr (true)
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 0
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#else
-#define GLZ_JKJ_IF_CONSTEVAL if (false)
-#define GLZ_JKJ_IF_NOT_CONSTEVAL if (true)
-#define GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL 0
-#define GLZ_JKJ_USE_IS_CONSTANT_EVALUATED 0
-#endif
-#endif
-#if GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL && GLZ_JKJ_HAS_BIT_CAST
-#define GLZ_JKJ_CONSTEXPR20 constexpr
-#else
-#define GLZ_JKJ_CONSTEXPR20
-#endif
-#if defined(__GNUC__) || defined(__clang__)
-#define GLZ_JKJ_SAFEBUFFERS
-#define GLZ_JKJ_FORCEINLINE inline __attribute__((always_inline))
-#elif defined(_MSC_VER)
-#define GLZ_JKJ_SAFEBUFFERS __declspec(safebuffers)
-#define GLZ_JKJ_FORCEINLINE __forceinline
-#else
-#define GLZ_JKJ_SAFEBUFFERS
-#define GLZ_JKJ_FORCEINLINE inline
-#endif
-#if defined(__has_builtin)
-#define GLZ_JKJ_HAS_BUILTIN(x) __has_builtin(x)
-#else
-#define GLZ_JKJ_HAS_BUILTIN(x) false
-#endif
-#undef min
-#undef max
-#undef GLZ_JKJ_HAS_BUILTIN
-#undef GLZ_JKJ_FORCEINLINE
-#undef GLZ_JKJ_SAFEBUFFERS
-#undef GLZ_JKJ_CONSTEXPR20
-#undef GLZ_JKJ_USE_IS_CONSTANT_EVALUATED
-#undef GLZ_JKJ_CAN_BRANCH_ON_CONSTEVAL
-#undef GLZ_JKJ_IF_NOT_CONSTEVAL
-#undef GLZ_JKJ_IF_CONSTEVAL
-#undef GLZ_JKJ_HAS_BIT_CAST
-#undef GLZ_JKJ_IF_CONSTEXPR
-#undef GLZ_JKJ_HAS_IF_CONSTEXPR
-#undef GLZ_JKJ_INLINE_VARIABLE
-#undef GLZ_JKJ_HAS_INLINE_VARIABLE
-#undef GLZ_JKJ_HAS_CONSTEXPR17
-#undef GLZ_JKJ_CONSTEXPR14
-#undef GLZ_JKJ_HAS_CONSTEXPR14
-#if GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED
-#undef GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED
-#else
-#undef GLZ_JKJ_STD_REPLACEMENT_NAMESPACE
-#endif
-#if GLZ_JKJ_STATIC_DATA_SECTION_DEFINED
-#undef GLZ_JKJ_STATIC_DATA_SECTION_DEFINED
-#else
-#undef GLZ_JKJ_STATIC_DATA_SECTION
-#endif
-#endif
-
 // Copyright 2020-2024 Junekey Jeon
 //
 // The contents of this file may be used under the terms of
@@ -365,25 +19,37 @@ export module glaze.util.dragonbox;
 // static data declaration will be decorated with this macro. The users may define this macro,
 // before including the library headers, into whatever they want.
 
-
-#ifndef GLZ_JKJ_STATIC_DATA_SECTION
-#define GLZ_JKJ_STATIC_DATA_SECTION
-#else
-#define GLZ_JKJ_STATIC_DATA_SECTION_DEFINED 1
+#pragma once
+#ifdef CPP_MODULES
+module;
 #endif
+#include "../../Export.hpp"
 
 // To use the library with toolchains without standard C++ headers, the users may define this macro
 // into their custom namespace which contains the defintions of all the standard C++ library
 // features used in this header. (The list can be found below.)
 #ifndef GLZ_JKJ_STD_REPLACEMENT_NAMESPACE
 #define GLZ_JKJ_STD_REPLACEMENT_NAMESPACE std
-
-#ifdef __has_include
+#include <cassert>
+#include <cstdint>
+#include <cstring>
+#include <limits>
+#include <type_traits>
 #if __has_include(<version>)
-#endif
+#include <version>
 #endif
 #else
 #define GLZ_JKJ_STD_REPLACEMENT_NAMESPACE_DEFINED 1
+#endif
+#ifdef CPP_MODULES
+export module glaze.util.dragonbox;
+#else
+#endif
+
+#ifndef GLZ_JKJ_STATIC_DATA_SECTION
+#define GLZ_JKJ_STATIC_DATA_SECTION
+#else
+#define GLZ_JKJ_STATIC_DATA_SECTION_DEFINED 1
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////

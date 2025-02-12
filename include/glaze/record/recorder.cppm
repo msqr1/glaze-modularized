@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -23,10 +26,7 @@ import glaze.util.variant;
 #include "glaze/util/variant.cppm"
 #endif
 
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    namespace detail
    {

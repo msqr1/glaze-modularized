@@ -23,7 +23,9 @@ export module glaze.concepts.container_concepts;
 // _like
 // Avoid the use of _t as that makes it seem like a type and not a concept
 
-EXPORT namespace glz
+BEGIN_EXPORT
+
+namespace glz
 {
    template <class T, class... U>
    concept is_any_of = (std::same_as<T, U> || ...);
@@ -396,3 +398,5 @@ namespace glz::detail
    template <class Container>
    using iterator_first_type = typename iterator_first_impl<Container>::type;
 }
+
+END_EXPORT

@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -9,10 +12,6 @@ module;
 export module glaze.util.itoa;
 #else
 #endif
-
-// Glaze Library
-// For the license information refer to glaze.hpp
-
 
 // Refactored from: https://github.com/ibireme/c_numconv_benchmark/blob/master/src/itoa/itoa_yy.c
 
@@ -44,7 +43,7 @@ export module glaze.util.itoa;
  */
 
 
-namespace glz
+EXPORT namespace glz
 {
    inline constexpr char char_table[200] = {
       '0', '0', '0', '1', '0', '2', '0', '3', '0', '4', '0', '5', '0', '6', '0', '7', '0', '8', '0', '9', '1', '0', '1',

@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,14 +15,9 @@ export module glaze.util.murmur;
 #else
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
 // Modified from: https://en.wikipedia.org/wiki/MurmurHash
 
-namespace glz
+EXPORT namespace glz
 {
    constexpr uint32_t to_uint32(const auto* bytes) noexcept
    {

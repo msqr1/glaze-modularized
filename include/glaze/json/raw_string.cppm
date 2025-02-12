@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -15,13 +18,7 @@ import glaze.json.write;
 #include "glaze/json/write.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    // do not decode/encode escaped characters for strings
    template <class T>

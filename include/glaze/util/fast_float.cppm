@@ -1,312 +1,3 @@
-#pragma once
-#ifdef CPP_MODULES
-module;
-#endif
-#include "../../Export.hpp"
-#ifdef __has_include
-#if __has_include(<version>)
-#include <version>
-#endif
-#endif
-#if __cpp_constexpr >= 201304
-#define GLZ_FASTFLOAT_CONSTEXPR14 constexpr
-#else
-#define GLZ_FASTFLOAT_CONSTEXPR14
-#endif
-#if defined(__cpp_lib_bit_cast) && __cpp_lib_bit_cast >= 201806L
-#define GLZ_FASTFLOAT_HAS_BIT_CAST 1
-#else
-#define GLZ_FASTFLOAT_HAS_BIT_CAST 0
-#endif
-#if defined(__cpp_lib_is_constant_evaluated) &&                                \
-    __cpp_lib_is_constant_evaluated >= 201811L
-#define GLZ_FASTFLOAT_HAS_IS_CONSTANT_EVALUATED 1
-#else
-#define GLZ_FASTFLOAT_HAS_IS_CONSTANT_EVALUATED 0
-#endif
-#if GLZ_FASTFLOAT_HAS_IS_CONSTANT_EVALUATED && GLZ_FASTFLOAT_HAS_BIT_CAST &&           \
-    __cpp_lib_constexpr_algorithms >= 201806L /*For std::copy and std::fill*/
-#define GLZ_FASTFLOAT_CONSTEXPR20 constexpr
-#define GLZ_FASTFLOAT_IS_CONSTEXPR 1
-#else
-#define GLZ_FASTFLOAT_CONSTEXPR20
-#define GLZ_FASTFLOAT_IS_CONSTEXPR 0
-#endif
-#if __cplusplus >= 201703L || (defined(_MSVC_LANG) && _MSVC_LANG >= 201703L)
-#define GLZ_FASTFLOAT_DETAIL_MUST_DEFINE_CONSTEXPR_VARIABLE 0
-#else
-#define GLZ_FASTFLOAT_DETAIL_MUST_DEFINE_CONSTEXPR_VARIABLE 1
-#endif
-#include <cfloat>
-#include <cstdint>
-#include <cassert>
-#include <cstring>
-#include <type_traits>
-#include <system_error>
-#ifdef __has_include
-#if __has_include(<stdfloat>) && (__cplusplus > 202002L || _MSVC_LANG > 202002L)
-#include <stdfloat>
-#endif
-#endif
-#if GLZ_FASTFLOAT_HAS_BIT_CAST
-#include <bit>
-#endif
-#if (defined(__x86_64) || defined(__x86_64__) || defined(_M_X64) ||            \
-     defined(__amd64) || defined(__aarch64__) || defined(_M_ARM64) ||          \
-     defined(__MINGW64__) || defined(__s390x__) ||                             \
-     (defined(__ppc64__) || defined(__PPC64__) || defined(__ppc64le__) ||      \
-      defined(__PPC64LE__)) ||                                                 \
-     defined(__loongarch64))
-#define GLZ_FASTFLOAT_64BIT 1
-#elif (defined(__i386) || defined(__i386__) || defined(_M_IX86) ||             \
-       defined(__arm__) || defined(_M_ARM) || defined(__ppc__) ||              \
-       defined(__MINGW32__) || defined(__EMSCRIPTEN__))
-#define GLZ_FASTFLOAT_32BIT 1
-#else
-#if SIZE_MAX == 0xffff
-#elif SIZE_MAX == 0xffffffff
-#define GLZ_FASTFLOAT_32BIT 1
-#elif SIZE_MAX == 0xffffffffffffffff
-#define GLZ_FASTFLOAT_64BIT 1
-#endif
-#endif
-#if ((defined(_WIN32) || defined(_WIN64)) && !defined(__clang__)) ||           \
-    (defined(_M_ARM64) && !defined(__MINGW32__))
-#include <intrin.h>
-#endif
-#if defined(_MSC_VER) && !defined(__clang__)
-#define GLZ_FASTFLOAT_VISUAL_STUDIO 1
-#endif
-#if defined __BYTE_ORDER__ && defined __ORDER_BIG_ENDIAN__
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)
-#elif defined _WIN32
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
-#else
-#if defined(__APPLE__) || defined(__FreeBSD__)
-#include <machine/endian.h>
-#elif defined(sun) || defined(__sun)
-#include <sys/byteorder.h>
-#elif defined(__MVS__)
-#include <sys/endian.h>
-#else
-#ifdef __has_include
-#if __has_include(<endian.h>)
-#include <endian.h>
-#endif //__has_include(<endian.h>)
-#endif //__has_include
-#endif
-#ifndef __BYTE_ORDER__
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
-#endif
-#ifndef __ORDER_LITTLE_ENDIAN__
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
-#endif
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
-#else
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 1
-#endif
-#endif
-#if defined(__SSE2__) || (defined(GLZ_FASTFLOAT_VISUAL_STUDIO) &&                  \
-                          (defined(_M_AMD64) || defined(_M_X64) ||             \
-                           (defined(_M_IX86_FP) && _M_IX86_FP == 2)))
-#define GLZ_FASTFLOAT_SSE2 1
-#endif
-#if defined(__aarch64__) || defined(_M_ARM64)
-#define GLZ_FASTFLOAT_NEON 1
-#endif
-#if defined(GLZ_FASTFLOAT_SSE2) || defined(GLZ_FASTFLOAT_NEON)
-#define GLZ_FASTFLOAT_HAS_SIMD 1
-#endif
-#if defined(__GNUC__)
-#define GLZ_FASTFLOAT_SIMD_DISABLE_WARNINGS                                        \
-  _Pragma("GCC diagnostic push")                                               \
-      _Pragma("GCC diagnostic ignored \"-Wcast-align\"")
-#else
-#define GLZ_FASTFLOAT_SIMD_DISABLE_WARNINGS
-#endif
-#if defined(__GNUC__)
-#define GLZ_FASTFLOAT_SIMD_RESTORE_WARNINGS _Pragma("GCC diagnostic pop")
-#else
-#define GLZ_FASTFLOAT_SIMD_RESTORE_WARNINGS
-#endif
-#ifdef GLZ_FASTFLOAT_VISUAL_STUDIO
-#define fastfloat_really_inline __forceinline
-#else
-#define fastfloat_really_inline inline __attribute__((always_inline))
-#endif
-#ifndef GLZ_FASTFLOAT_ASSERT
-#define GLZ_FASTFLOAT_ASSERT(x)                                                    \
-  { ((void)(x)); }
-#endif
-#ifndef GLZ_FASTFLOAT_DEBUG_ASSERT
-#define GLZ_FASTFLOAT_DEBUG_ASSERT(x)                                              \
-  { ((void)(x)); }
-#endif
-#define GLZ_FASTFLOAT_TRY(x)                                                       \
-  {                                                                            \
-    if (!(x))                                                                  \
-      return false;                                                            \
-  }
-#define GLZ_FASTFLOAT_ENABLE_IF(...)                                               \
-  typename std::enable_if<(__VA_ARGS__), int>::type
-#include <cctype>
-#include <cstdint>
-#include <cstring>
-#include <iterator>
-#include <limits>
-#include <type_traits>
-#ifdef GLZ_FASTFLOAT_SSE2
-#include <emmintrin.h>
-#endif
-#ifdef GLZ_FASTFLOAT_NEON
-#include <arm_neon.h>
-#endif
-#include <cstdint>
-#include <cfloat>
-#include <cinttypes>
-#include <cmath>
-#include <cstdint>
-#include <cstdlib>
-#include <cstring>
-#include <algorithm>
-#include <cstdint>
-#include <climits>
-#include <cstring>
-#if defined(GLZ_FASTFLOAT_64BIT) && !defined(__sparc)
-#define GLZ_FASTFLOAT_64BIT_LIMB 1
-#else
-#define GLZ_FASTFLOAT_32BIT_LIMB
-#endif
-#include <algorithm>
-#include <cstdint>
-#include <cstring>
-#include <iterator>
-#include <cmath>
-#include <cstring>
-#include <limits>
-#include <system_error>
-#ifdef CPP_MODULES
-export module glaze.util.fast_float;
-#else
-#if __cpp_constexpr >= 201304
-#define GLZ_FASTFLOAT_CONSTEXPR14 constexpr
-#else
-#define GLZ_FASTFLOAT_CONSTEXPR14
-#endif
-#if defined(__cpp_lib_bit_cast) && __cpp_lib_bit_cast >= 201806L
-#define GLZ_FASTFLOAT_HAS_BIT_CAST 1
-#else
-#define GLZ_FASTFLOAT_HAS_BIT_CAST 0
-#endif
-#if defined(__cpp_lib_is_constant_evaluated) &&                                \
-    __cpp_lib_is_constant_evaluated >= 201811L
-#define GLZ_FASTFLOAT_HAS_IS_CONSTANT_EVALUATED 1
-#else
-#define GLZ_FASTFLOAT_HAS_IS_CONSTANT_EVALUATED 0
-#endif
-#if GLZ_FASTFLOAT_HAS_IS_CONSTANT_EVALUATED && GLZ_FASTFLOAT_HAS_BIT_CAST &&           \
-    __cpp_lib_constexpr_algorithms >= 201806L /*For std::copy and std::fill*/
-#define GLZ_FASTFLOAT_CONSTEXPR20 constexpr
-#define GLZ_FASTFLOAT_IS_CONSTEXPR 1
-#else
-#define GLZ_FASTFLOAT_CONSTEXPR20
-#define GLZ_FASTFLOAT_IS_CONSTEXPR 0
-#endif
-#if __cplusplus >= 201703L || (defined(_MSVC_LANG) && _MSVC_LANG >= 201703L)
-#define GLZ_FASTFLOAT_DETAIL_MUST_DEFINE_CONSTEXPR_VARIABLE 0
-#else
-#define GLZ_FASTFLOAT_DETAIL_MUST_DEFINE_CONSTEXPR_VARIABLE 1
-#endif
-#if (defined(__x86_64) || defined(__x86_64__) || defined(_M_X64) ||            \
-     defined(__amd64) || defined(__aarch64__) || defined(_M_ARM64) ||          \
-     defined(__MINGW64__) || defined(__s390x__) ||                             \
-     (defined(__ppc64__) || defined(__PPC64__) || defined(__ppc64le__) ||      \
-      defined(__PPC64LE__)) ||                                                 \
-     defined(__loongarch64))
-#define GLZ_FASTFLOAT_64BIT 1
-#elif (defined(__i386) || defined(__i386__) || defined(_M_IX86) ||             \
-       defined(__arm__) || defined(_M_ARM) || defined(__ppc__) ||              \
-       defined(__MINGW32__) || defined(__EMSCRIPTEN__))
-#define GLZ_FASTFLOAT_32BIT 1
-#else
-#if SIZE_MAX == 0xffff
-#elif SIZE_MAX == 0xffffffff
-#define GLZ_FASTFLOAT_32BIT 1
-#elif SIZE_MAX == 0xffffffffffffffff
-#define GLZ_FASTFLOAT_64BIT 1
-#endif
-#endif
-#if defined(_MSC_VER) && !defined(__clang__)
-#define GLZ_FASTFLOAT_VISUAL_STUDIO 1
-#endif
-#if defined __BYTE_ORDER__ && defined __ORDER_BIG_ENDIAN__
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)
-#elif defined _WIN32
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
-#else
-#ifndef __BYTE_ORDER__
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
-#endif
-#ifndef __ORDER_LITTLE_ENDIAN__
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
-#endif
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
-#else
-#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 1
-#endif
-#endif
-#if defined(__SSE2__) || (defined(GLZ_FASTFLOAT_VISUAL_STUDIO) &&                  \
-                          (defined(_M_AMD64) || defined(_M_X64) ||             \
-                           (defined(_M_IX86_FP) && _M_IX86_FP == 2)))
-#define GLZ_FASTFLOAT_SSE2 1
-#endif
-#if defined(__aarch64__) || defined(_M_ARM64)
-#define GLZ_FASTFLOAT_NEON 1
-#endif
-#if defined(GLZ_FASTFLOAT_SSE2) || defined(GLZ_FASTFLOAT_NEON)
-#define GLZ_FASTFLOAT_HAS_SIMD 1
-#endif
-#if defined(__GNUC__)
-#define GLZ_FASTFLOAT_SIMD_DISABLE_WARNINGS                                        \
-  _Pragma("GCC diagnostic push")                                               \
-      _Pragma("GCC diagnostic ignored \"-Wcast-align\"")
-#else
-#define GLZ_FASTFLOAT_SIMD_DISABLE_WARNINGS
-#endif
-#if defined(__GNUC__)
-#define GLZ_FASTFLOAT_SIMD_RESTORE_WARNINGS _Pragma("GCC diagnostic pop")
-#else
-#define GLZ_FASTFLOAT_SIMD_RESTORE_WARNINGS
-#endif
-#ifdef GLZ_FASTFLOAT_VISUAL_STUDIO
-#define fastfloat_really_inline __forceinline
-#else
-#define fastfloat_really_inline inline __attribute__((always_inline))
-#endif
-#ifndef GLZ_FASTFLOAT_ASSERT
-#define GLZ_FASTFLOAT_ASSERT(x)                                                    \
-  { ((void)(x)); }
-#endif
-#ifndef GLZ_FASTFLOAT_DEBUG_ASSERT
-#define GLZ_FASTFLOAT_DEBUG_ASSERT(x)                                              \
-  { ((void)(x)); }
-#endif
-#define GLZ_FASTFLOAT_TRY(x)                                                       \
-  {                                                                            \
-    if (!(x))                                                                  \
-      return false;                                                            \
-  }
-#define GLZ_FASTFLOAT_ENABLE_IF(...)                                               \
-  typename std::enable_if<(__VA_ARGS__), int>::type
-#if defined(GLZ_FASTFLOAT_64BIT) && !defined(__sparc)
-#define GLZ_FASTFLOAT_64BIT_LIMB 1
-#else
-#define GLZ_FASTFLOAT_32BIT_LIMB
-#endif
-#endif
-
 // fast_float version 7.0.0, https://github.com/fastfloat/fast_float
 
 // clang-format off
@@ -403,10 +94,69 @@ export module glaze.util.fast_float;
 //    DEALINGS IN THE SOFTWARE.
 //
 
-
-#ifdef __has_include
-#if __has_include(<version>)
+#pragma once
+#ifdef CPP_MODULES
+module;
 #endif
+#include "../../Export.hpp"
+#if __has_include(<version>)
+#include <version>
+#endif
+#include <cfloat>
+#include <cassert>
+#include <system_error>
+#if __has_include(<stdfloat>) && (__cplusplus > 202002L || _MSVC_LANG > 202002L)
+#include <stdfloat>
+#endif
+#if GLZ_FASTFLOAT_HAS_BIT_CAST
+#include <bit>
+#endif
+#if ((defined(_WIN32) || defined(_WIN64)) && !defined(__clang__)) ||           \
+    (defined(_M_ARM64) && !defined(__MINGW32__))
+#include <intrin.h>
+#endif
+#if defined __BYTE_ORDER__ && defined __ORDER_BIG_ENDIAN__
+#define GLZ_FASTFLOAT_IS_BIG_ENDIAN (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)
+#elif defined _WIN32
+#define GLZ_FASTFLOAT_IS_BIG_ENDIAN 0
+#else
+#if defined(__APPLE__) || defined(__FreeBSD__)
+#include <machine/endian.h>
+#elif defined(sun) || defined(__sun)
+#include <sys/byteorder.h>
+#elif defined(__MVS__)
+#include <sys/endian.h>
+#else
+#if __has_include(<endian.h>)
+#include <endian.h>
+#endif //__has_include(<endian.h>)
+#endif
+#endif
+#if defined(__SSE2__) || (defined(GLZ_FASTFLOAT_VISUAL_STUDIO) &&                  \
+                          (defined(_M_AMD64) || defined(_M_X64) ||             \
+                           (defined(_M_IX86_FP) && _M_IX86_FP == 2)))
+#define GLZ_FASTFLOAT_SSE2 1
+#include <emmintrin.h>
+#endif
+#if defined(__aarch64__) || defined(_M_ARM64)
+#define GLZ_FASTFLOAT_NEON 1
+#include <arm_neon.h>
+#endif
+#include <cctype>
+#include <cfloat>
+#include <cinttypes>
+#include <type_traits>
+#include <cstdlib>
+#include <climits>
+#include <algorithm>
+#include <iterator>
+#include <limits>
+#include <cmath>
+#include <cstring>
+#include <cstdint>
+#ifdef CPP_MODULES
+export module glaze.util.fast_float;
+#else
 #endif
 
 // Testing for https://wg21.link/N3652, adopted in C++14
@@ -565,16 +315,6 @@ using parse_options = parse_options_t<char>;
 #else
 #define GLZ_FASTFLOAT_IS_BIG_ENDIAN 1
 #endif
-#endif
-
-#if defined(__SSE2__) || (defined(GLZ_FASTFLOAT_VISUAL_STUDIO) &&                  \
-                          (defined(_M_AMD64) || defined(_M_X64) ||             \
-                           (defined(_M_IX86_FP) && _M_IX86_FP == 2)))
-#define GLZ_FASTFLOAT_SSE2 1
-#endif
-
-#if defined(__aarch64__) || defined(_M_ARM64)
-#define GLZ_FASTFLOAT_NEON 1
 #endif
 
 #if defined(GLZ_FASTFLOAT_SSE2) || defined(GLZ_FASTFLOAT_NEON)
@@ -1344,14 +1084,6 @@ GLZ_FASTFLOAT_CONSTEXPR20 from_chars_result_t<UC>
 from_chars(UC const *first, UC const *last, T &value, int base = 10) noexcept;
 
 } // namespace fast_float
-
-
-
-#ifdef GLZ_FASTFLOAT_SSE2
-#endif
-
-#ifdef GLZ_FASTFLOAT_NEON
-#endif
 
 namespace glz::fast_float {
 

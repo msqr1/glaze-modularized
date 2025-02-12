@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,17 +15,13 @@ import glaze.util.string_literal;
 #include "glaze/util/string_literal.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 // JSON does not require escaped unicode keys to match with unescaped UTF-8
 // In order to match with escaped unicode you can register your fields with
 // the escaped unicode value.
 // glz::escape_unicode<"😀"> will generate a compile time escaped unicode version
 // of your key.
+
+BEGIN_EXPORT
 
 namespace glz::detail
 {
@@ -265,3 +264,5 @@ namespace glz
       return {arr.data(), arr.size() - 1};
    }();
 }
+
+END_EXPORT

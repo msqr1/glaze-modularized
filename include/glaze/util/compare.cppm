@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,12 +15,7 @@ export module glaze.util.compare;
 #else
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    template <class Char>
    inline bool compare(const Char* lhs, const Char* rhs, uint64_t count) noexcept

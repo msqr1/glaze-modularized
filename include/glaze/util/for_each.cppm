@@ -5,55 +5,6 @@ module;
 #include "../../Export.hpp"
 #include <tuple>
 #include <utility>
-#define GLZ_PARENS ()
-#define GLZ_EXPAND(...) GLZ_EXPAND32(__VA_ARGS__)
-#define GLZ_EXPAND32(...) GLZ_EXPAND16(GLZ_EXPAND16(__VA_ARGS__))
-#define GLZ_EXPAND16(...) GLZ_EXPAND8(GLZ_EXPAND8(__VA_ARGS__))
-#define GLZ_EXPAND8(...) GLZ_EXPAND4(GLZ_EXPAND4(__VA_ARGS__))
-#define GLZ_EXPAND4(...) GLZ_EXPAND2(GLZ_EXPAND2(__VA_ARGS__))
-#define GLZ_EXPAND2(...) GLZ_EXPAND1(GLZ_EXPAND1(__VA_ARGS__))
-#define GLZ_EXPAND1(...) __VA_ARGS__
-#define GLZ_FOR_EACH(macro, ...) __VA_OPT__(GLZ_EXPAND(GLZ_FOR_EACH_HELPER(macro, __VA_ARGS__)))
-#define GLZ_FOR_EACH_HELPER(macro, a, ...) \
-   macro(a) __VA_OPT__(, ) __VA_OPT__(GLZ_FOR_EACH_AGAIN GLZ_PARENS(macro, __VA_ARGS__))
-#define GLZ_FOR_EACH_AGAIN() GLZ_FOR_EACH_HELPER
-#define GLZ_EVERY(macro, ...) __VA_OPT__(GLZ_EXPAND(GLZ_EVERY_HELPER(macro, __VA_ARGS__)))
-#define GLZ_EVERY_HELPER(macro, a, ...) macro(a) __VA_OPT__(GLZ_EVERY_AGAIN GLZ_PARENS(macro, __VA_ARGS__))
-#define GLZ_EVERY_AGAIN() GLZ_EVERY_HELPER
-#define GLZ_CASE(I)                    \
-   case I: {                           \
-      lambda.template operator()<I>(); \
-      break;                           \
-   }
-#define GLZ_SWITCH(X, ...)                 \
-   else if constexpr (N == X)              \
-   {                                       \
-      switch (index) {                     \
-         GLZ_EVERY(GLZ_CASE, __VA_ARGS__); \
-      default: {                           \
-         unreachable();                    \
-      }                                    \
-      }                                    \
-   }
-#define GLZ_10 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-#define GLZ_20 GLZ_10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
-#define GLZ_30 GLZ_20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
-#define GLZ_40 GLZ_30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40
-#define GLZ_50 GLZ_40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
-#define GLZ_60 GLZ_50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
-#define GLZ_INVOKE(I) lambda.template operator()<I>();
-#undef GLZ_20
-#undef GLZ_30
-#undef GLZ_40
-#undef GLZ_50
-#undef GLZ_60
-#undef GLZ_CASE
-#undef GLZ_SWITCH
-#undef GLZ_INVOKE
-#undef GLZ_INVOKE_ALL
-#undef GLZ_EVERY_AGAIN
-#undef GLZ_EVERY_HELPER
-#undef GLZ_EVERY
 #ifdef CPP_MODULES
 export module glaze.util.for_each;
 import glaze.util.inline;
@@ -61,62 +12,9 @@ import glaze.util.utility;
 #else
 #include "glaze/util/inline.cppm"
 #include "glaze/util/utility.cppm"
-#define GLZ_PARENS ()
-#define GLZ_EXPAND(...) GLZ_EXPAND32(__VA_ARGS__)
-#define GLZ_EXPAND32(...) GLZ_EXPAND16(GLZ_EXPAND16(__VA_ARGS__))
-#define GLZ_EXPAND16(...) GLZ_EXPAND8(GLZ_EXPAND8(__VA_ARGS__))
-#define GLZ_EXPAND8(...) GLZ_EXPAND4(GLZ_EXPAND4(__VA_ARGS__))
-#define GLZ_EXPAND4(...) GLZ_EXPAND2(GLZ_EXPAND2(__VA_ARGS__))
-#define GLZ_EXPAND2(...) GLZ_EXPAND1(GLZ_EXPAND1(__VA_ARGS__))
-#define GLZ_EXPAND1(...) __VA_ARGS__
-#define GLZ_FOR_EACH(macro, ...) __VA_OPT__(GLZ_EXPAND(GLZ_FOR_EACH_HELPER(macro, __VA_ARGS__)))
-#define GLZ_FOR_EACH_HELPER(macro, a, ...) \
-   macro(a) __VA_OPT__(, ) __VA_OPT__(GLZ_FOR_EACH_AGAIN GLZ_PARENS(macro, __VA_ARGS__))
-#define GLZ_FOR_EACH_AGAIN() GLZ_FOR_EACH_HELPER
-#define GLZ_EVERY(macro, ...) __VA_OPT__(GLZ_EXPAND(GLZ_EVERY_HELPER(macro, __VA_ARGS__)))
-#define GLZ_EVERY_HELPER(macro, a, ...) macro(a) __VA_OPT__(GLZ_EVERY_AGAIN GLZ_PARENS(macro, __VA_ARGS__))
-#define GLZ_EVERY_AGAIN() GLZ_EVERY_HELPER
-#define GLZ_CASE(I)                    \
-   case I: {                           \
-      lambda.template operator()<I>(); \
-      break;                           \
-   }
-#define GLZ_SWITCH(X, ...)                 \
-   else if constexpr (N == X)              \
-   {                                       \
-      switch (index) {                     \
-         GLZ_EVERY(GLZ_CASE, __VA_ARGS__); \
-      default: {                           \
-         unreachable();                    \
-      }                                    \
-      }                                    \
-   }
-#define GLZ_10 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-#define GLZ_20 GLZ_10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
-#define GLZ_30 GLZ_20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
-#define GLZ_40 GLZ_30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40
-#define GLZ_50 GLZ_40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50
-#define GLZ_60 GLZ_50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
-#define GLZ_INVOKE(I) lambda.template operator()<I>();
-#undef GLZ_20
-#undef GLZ_30
-#undef GLZ_40
-#undef GLZ_50
-#undef GLZ_60
-#undef GLZ_CASE
-#undef GLZ_SWITCH
-#undef GLZ_INVOKE
-#undef GLZ_INVOKE_ALL
-#undef GLZ_EVERY_AGAIN
-#undef GLZ_EVERY_HELPER
-#undef GLZ_EVERY
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -409,3 +307,5 @@ namespace glz::detail
 #undef GLZ_EVERY_HELPER
 #undef GLZ_EVERY
 }
+
+END_EXPORT

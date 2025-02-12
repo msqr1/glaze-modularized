@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -18,10 +21,7 @@ import glaze.util.itoa;
 #include "glaze/util/itoa.cppm"
 #endif
 
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    // std::countl_zero uses another branch check whether the input is zero,
    // we use this function when we know that x > 0
