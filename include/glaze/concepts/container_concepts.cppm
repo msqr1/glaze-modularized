@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -14,18 +17,13 @@ export module glaze.concepts.container_concepts;
 #else
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
 // Over time we want most concepts to use the nomenclature:
 // is_
 // has_
 // _like
 // Avoid the use of _t as that makes it seem like a type and not a concept
 
-namespace glz
+EXPORT namespace glz
 {
    template <class T, class... U>
    concept is_any_of = (std::same_as<T, U> || ...);

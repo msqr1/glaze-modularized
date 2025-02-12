@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -22,17 +25,12 @@ import glaze.util.dump;
 #include "glaze/util/dump.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
 // To handle invalid inputs we must check if (it >= end) at the beginning of each function
 // This way we can always call a function after incrementing the iterator without needed to do a tail check
 // If we know the first function called has an end check, we don't need a guard at the top of the function
 // Also, after almost every function call we need to check if an error was produced
 
-namespace glz
+EXPORT namespace glz
 {
    namespace detail
    {

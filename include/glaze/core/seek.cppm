@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -16,13 +19,10 @@ import glaze.util.glaze_fast_float;
 #include "glaze/util/glaze_fast_float.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
 // Use JSON Pointer syntax to seek to a specific element
 // https://github.com/stephenberry/JSON-Pointer
+
+BEGIN_EXPORT
 
 namespace glz::detail
 {
@@ -617,3 +617,5 @@ namespace glz
       }
    }
 }
+
+END_EXPORT

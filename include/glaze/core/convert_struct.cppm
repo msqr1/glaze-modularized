@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,12 +15,7 @@ import glaze.core.reflect;
 #include "glaze/core/reflect.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    /**
     * @brief Provides generic struct to struct conversion based on reflected fields.

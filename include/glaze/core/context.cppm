@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -7,33 +10,12 @@ module;
 #include <iterator>
 #include <string>
 #include <string_view>
-#define GLZ_ADD_LEVEL                        \
-   if constexpr (not Opts.null_terminated) { \
-      ++ctx.indentation_level;               \
-   }
-#define GLZ_SUB_LEVEL                        \
-   if constexpr (not Opts.null_terminated) { \
-      --ctx.indentation_level;               \
-   }
 #ifdef CPP_MODULES
 export module glaze.core.context;
 #else
-#define GLZ_ADD_LEVEL                        \
-   if constexpr (not Opts.null_terminated) { \
-      ++ctx.indentation_level;               \
-   }
-#define GLZ_SUB_LEVEL                        \
-   if constexpr (not Opts.null_terminated) { \
-      --ctx.indentation_level;               \
-   }
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    constexpr size_t max_recursive_depth_limit = 256;
 

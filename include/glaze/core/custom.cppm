@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,12 +15,7 @@ import glaze.core.wrappers;
 #include "glaze/core/wrappers.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    template <uint32_t Format, class T>
       requires(is_specialization_v<T, custom_t>)

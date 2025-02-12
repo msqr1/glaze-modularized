@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -35,55 +38,9 @@ export module glaze.api.lib;
 import glaze.api.api;
 #else
 #include "glaze/api/api.cppm"
-#if defined(_WIN32) || defined(__CYGWIN__)
-#ifndef GLAZE_API_ON_WINDOWS
-#define GLAZE_API_ON_WINDOWS
-#endif
-#endif
-#ifdef GLAZE_API_ON_WINDOWS
-#ifdef NOMINMAX
-#else
-#endif
-#define SHARED_LIBRARY_EXTENSION ".dll"
-#define SHARED_LIBRARY_PREFIX ""
-#elif __APPLE__
-#define SHARED_LIBRARY_EXTENSION ".dylib"
-#define SHARED_LIBRARY_PREFIX "lib"
-#elif __has_include(<dlfcn.h>)
-#define SHARED_LIBRARY_EXTENSION ".so"
-#define SHARED_LIBRARY_PREFIX "lib"
-#endif
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-#if defined(_WIN32) || defined(__CYGWIN__)
-#ifndef GLAZE_API_ON_WINDOWS
-#define GLAZE_API_ON_WINDOWS
-#endif
-#endif
-
-#ifdef GLAZE_API_ON_WINDOWS
-#ifdef NOMINMAX
-#else
-#define NOMINMAX
-#undef NOMINMAX
-#endif
-#define SHARED_LIBRARY_EXTENSION ".dll"
-#define SHARED_LIBRARY_PREFIX ""
-#elif __APPLE__
-#define SHARED_LIBRARY_EXTENSION ".dylib"
-#define SHARED_LIBRARY_PREFIX "lib"
-#elif __has_include(<dlfcn.h>)
-#define SHARED_LIBRARY_EXTENSION ".so"
-#define SHARED_LIBRARY_PREFIX "lib"
-#endif
-
-namespace glz
+EXPORT namespace glz
 {
 #ifdef GLAZE_API_ON_WINDOWS
    using lib_t = HINSTANCE;

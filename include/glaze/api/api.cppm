@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -8,11 +11,6 @@ module;
 #include <memory>
 #include <span>
 #include <stdexcept>
-#if defined(_WIN32) || defined(__CYGWIN__)
-#define DLL_EXPORT __declspec(dllexport)
-#else
-#define DLL_EXPORT
-#endif
 #ifdef CPP_MODULES
 export module glaze.api.api;
 import glaze.api.std.string;
@@ -26,11 +24,6 @@ import glaze.util.expected;
 #include "glaze/core/context.cppm"
 #include "glaze/core/opts.cppm"
 #include "glaze/util/expected.cppm"
-#if defined(_WIN32) || defined(__CYGWIN__)
-#define DLL_EXPORT __declspec(dllexport)
-#else
-#define DLL_EXPORT
-#endif
 #endif
 
 // Glaze Library

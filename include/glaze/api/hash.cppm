@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -13,12 +16,6 @@ import glaze.core.meta;
 #include "glaze/core/meta.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 // Collision calculations done with the formula: e^((-k * (k - 1)/(2 * N)))
 // The approximation error tends to zero as N increases, and we are dealing with a large N
 // https://preshing.com/20110504/hash-collision-probabilities/
@@ -31,7 +28,7 @@ import glaze.core.meta;
 // bit: 1220 times 128 bit: 2.2494655e22 times (or 22 sextillion times) 256 bit: 7.6545351e60 times From these
 // calculations it is apparent that a 128 bit hash is more than sufficient
 
-namespace glz
+EXPORT namespace glz
 {
    template <class T, T Value>
    consteval auto make_array()

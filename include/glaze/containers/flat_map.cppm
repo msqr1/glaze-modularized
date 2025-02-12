@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -18,16 +21,10 @@ import glaze.util.expected;
 #include "glaze/util/expected.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 // A flat_map. This version uses a single container for key/value pairs for the sake of cache locality. The
 // std::flat_map uses separate key/value arrays.
 
-namespace glz
+EXPORT namespace glz
 {
    template <typename K1, typename K2>
    concept KeyEqualComparable = requires(const K1& k1, const K2& k2) {

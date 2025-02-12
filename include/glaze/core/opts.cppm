@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -21,11 +24,7 @@ import glaze.util.type_traits;
 #undef bool_t
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -443,3 +442,5 @@ namespace glz
    template <uint32_t Format, class T>
    concept read_supported = read_format_supported<Format, T>();
 }
+
+END_EXPORT

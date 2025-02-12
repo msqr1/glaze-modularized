@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -18,12 +21,7 @@ import glaze.util.for_each;
 #include "glaze/util/for_each.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    // Given a JSON pointer path, reads from the buffer into the object
    template <opts Opts, class T, class B>

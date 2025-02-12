@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,14 +15,9 @@ import glaze.core.opts;
 #include "glaze/core/opts.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
 // Common behavior for `to` specializations, typically applies for all formats
 
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    template <uint32_t Format>
    struct to<Format, hidden>

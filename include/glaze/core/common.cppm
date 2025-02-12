@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -45,11 +48,7 @@ import glaze.util.variant;
 #include "glaze/util/variant.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -756,3 +755,5 @@ struct glz::meta<glz::error_code>
                                      includer_error, //
                                      feature_not_supported};
 };
+
+END_EXPORT

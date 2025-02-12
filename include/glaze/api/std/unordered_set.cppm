@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -11,13 +14,7 @@ import glaze.core.meta;
 #include "glaze/core/meta.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    template <class T>
    struct meta<std::unordered_set<T>>

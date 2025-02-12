@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -18,12 +21,7 @@ import glaze.util.dump;
 #include "glaze/util/dump.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    template <>
    struct skip_value<BEVE>

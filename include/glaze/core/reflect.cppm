@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -21,16 +24,13 @@ import glaze.reflection.to_tuple;
 #include "glaze/reflection/to_tuple.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
 #ifdef _MSC_VER
 // Turn off MSVC warning for unreferenced formal parameter, which is referenced in a constexpr branch
 #pragma warning(push)
 #pragma warning(disable : 4100 4189)
 #endif
+
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -445,8 +445,6 @@ namespace glz::detail
       }
    }
 }
-
-
 
 namespace glz
 {
@@ -2009,6 +2007,8 @@ namespace glz
       }
    }
 }
+
+END_EXPORT
 
 #ifdef _MSC_VER
 // restore disabled warnings

@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -21,26 +24,9 @@ import glaze.util.inline;
 #else
 #include "glaze/core/context.cppm"
 #include "glaze/util/inline.cppm"
-#define GLZ_END_CHECK(RETURN)                 \
-   if (it >= end) [[unlikely]] {              \
-      ctx.error = error_code::unexpected_end; \
-      return RETURN;                          \
-   }
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-#define GLZ_END_CHECK(RETURN)                 \
-   if (it >= end) [[unlikely]] {              \
-      ctx.error = error_code::unexpected_end; \
-      return RETURN;                          \
-   }
-
-namespace glz::tag
+EXPORT namespace glz::tag
 {
    constexpr uint8_t null = 0;
    constexpr uint8_t boolean = 0b00001'000;

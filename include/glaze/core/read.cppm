@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -15,13 +18,7 @@ import glaze.util.parse;
 #include "glaze/util/parse.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    template <opts Opts, bool Padded = false>
    auto read_iterators(contiguous auto&& buffer) noexcept

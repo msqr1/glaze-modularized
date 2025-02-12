@@ -1,14 +1,3 @@
-#pragma once
-#ifdef CPP_MODULES
-module;
-#endif
-#include "../../Export.hpp"
-#include <cstdint>
-#ifdef CPP_MODULES
-export module glaze.api.xxh64;
-#else
-#endif
-
 // Glaze Library
 // For the license information refer to glaze.hpp
 
@@ -32,12 +21,21 @@ export module glaze.api.xxh64;
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
+#pragma once
+#ifdef CPP_MODULES
+module;
+#endif
+#include "../../Export.hpp"
+#include <cstdint>
+#ifdef CPP_MODULES
+export module glaze.api.xxh64;
+#else
+#endif
 
 // https://github.com/Cyan4973/xxHash
 // http://cyan4973.github.io/xxHash/
 
-struct xxh64
+EXPORT struct xxh64
 {
    static constexpr uint64_t hash(const char* p, uint64_t len, uint64_t seed)
    {
