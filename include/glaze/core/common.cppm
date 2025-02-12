@@ -13,11 +13,11 @@ module;
 #include <string>
 #include <type_traits>
 #include <vector>
+#include "glaze/core/feature_test.hpp"
 #ifdef CPP_MODULES
 export module glaze.core.common;
 import glaze.concepts.container_concepts;
 import glaze.core.context;
-import glaze.core.feature_test;
 import glaze.core.meta;
 import glaze.util.bit_array;
 import glaze.util.expected;
@@ -33,7 +33,6 @@ import glaze.util.variant;
 #else
 #include "glaze/concepts/container_concepts.cppm"
 #include "glaze/core/context.cppm"
-#include "glaze/core/feature_test.cppm"
 #include "glaze/core/meta.cppm"
 #include "glaze/util/bit_array.cppm"
 #include "glaze/util/expected.cppm"

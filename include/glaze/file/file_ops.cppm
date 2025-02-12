@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -13,19 +16,13 @@ import glaze.core.context;
 #include "glaze/core/context.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 #ifdef _MSC_VER
 // Turn off MSVC warning for unsafe fopen
 #pragma warning(push)
 #pragma warning(disable : 4996)
 #endif
 
-namespace glz
+EXPORT namespace glz
 {
    template <class T>
    [[nodiscard]] error_code file_to_buffer(T& buffer, auto* file, const std::string_view path)

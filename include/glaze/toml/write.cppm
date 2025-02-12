@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -26,12 +29,7 @@ import glaze.util.itoa;
 #include "glaze/util/itoa.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    namespace detail
    {

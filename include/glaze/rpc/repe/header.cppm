@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,12 +15,7 @@ export module glaze.rpc.repe.header;
 #else
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz::repe
+EXPORT namespace glz::repe
 {
    // read/write are from the client's perspective
    enum struct action : uint32_t {

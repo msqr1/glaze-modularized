@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,18 +15,12 @@ import glaze.glaze;
 #include "glaze/glaze.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 // The purpose of this command line interface menu is to use reflection to build the menu,
 // but also allow this menu to be registered as an RPC interface.
 // So, either the command line interface can be used or another program can call the same
 // functions over RPC.
 
-namespace glz
+EXPORT namespace glz
 {
    // To support bool and std::atomic<bool> and other custom boolean types
    template <class T>

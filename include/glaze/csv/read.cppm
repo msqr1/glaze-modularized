@@ -4,24 +4,6 @@ module;
 #endif
 #include "../../Export.hpp"
 #include <charconv>
-#define GLZ_CSV_NL                             \
-   if (*it == '\n') {                          \
-      ++it;                                    \
-   }                                           \
-   else if (*it == '\r') {                     \
-      ++it;                                    \
-      if (*it == '\n') [[likely]] {            \
-         ++it;                                 \
-      }                                        \
-      else [[unlikely]] {                      \
-         ctx.error = error_code::syntax_error; \
-         return;                               \
-      }                                        \
-   }                                           \
-   else [[unlikely]] {                         \
-      ctx.error = error_code::syntax_error;    \
-      return;                                  \
-   }
 #ifdef CPP_MODULES
 export module glaze.csv.read;
 import glaze.core.opts;
@@ -37,24 +19,7 @@ import glaze.util.parse;
 #include "glaze/file/file_ops.cppm"
 #include "glaze/util/glaze_fast_float.cppm"
 #include "glaze/util/parse.cppm"
-#define GLZ_CSV_NL                             \
-   if (*it == '\n') {                          \
-      ++it;                                    \
-   }                                           \
-   else if (*it == '\r') {                     \
-      ++it;                                    \
-      if (*it == '\n') [[likely]] {            \
-         ++it;                                 \
-      }                                        \
-      else [[unlikely]] {                      \
-         ctx.error = error_code::syntax_error; \
-         return;                               \
-      }                                        \
-   }                                           \
-   else [[unlikely]] {                         \
-      ctx.error = error_code::syntax_error;    \
-      return;                                  \
-   }
+
 #endif
 
 // Glaze Library

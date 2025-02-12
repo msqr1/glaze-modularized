@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -12,12 +15,7 @@ import glaze.rpc.repe.header;
 #include "glaze/rpc/repe/header.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-namespace glz::repe
+EXPORT namespace glz::repe
 {
    struct state final
    {

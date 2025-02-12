@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -8,20 +11,6 @@ module;
 #include <cstddef>
 #include <type_traits>
 #include <utility>
-#if (__has_cpp_attribute(no_unique_address))
-#define GLZ_NO_UNIQUE_ADDRESS [[no_unique_address]]
-#elif (__has_cpp_attribute(msvc::no_unique_address)) || ((defined _MSC_VER) && (!defined __clang__))
-#define GLZ_NO_UNIQUE_ADDRESS [[msvc::no_unique_address]]
-#else
-#define GLZ_NO_UNIQUE_ADDRESS
-#endif
-#if !defined(TUPLET_CAT_BY_FORWARDING_TUPLE)
-#if defined(__clang__)
-#define TUPLET_CAT_BY_FORWARDING_TUPLE 0
-#else
-#define TUPLET_CAT_BY_FORWARDING_TUPLE 1
-#endif
-#endif
 #include <array>
 #include <tuple>
 #include <variant>
@@ -30,29 +19,9 @@ export module glaze.tuplet.tuple;
 import glaze.util.inline;
 #else
 #include "glaze/util/inline.cppm"
-#if (__has_cpp_attribute(no_unique_address))
-#define GLZ_NO_UNIQUE_ADDRESS [[no_unique_address]]
-#elif (__has_cpp_attribute(msvc::no_unique_address)) || ((defined _MSC_VER) && (!defined __clang__))
-#define GLZ_NO_UNIQUE_ADDRESS [[msvc::no_unique_address]]
-#else
-#define GLZ_NO_UNIQUE_ADDRESS
 #endif
-#if !defined(TUPLET_CAT_BY_FORWARDING_TUPLE)
-#if defined(__clang__)
-#define TUPLET_CAT_BY_FORWARDING_TUPLE 0
-#else
-#define TUPLET_CAT_BY_FORWARDING_TUPLE 1
-#endif
-#endif
-#endif
-
-// Glaze Library
-// For the license information refer to glaze.hpp
 
 // original source (significantly refactored): https://github.com/codeinred/tuplet
-
-
-
 
 #if (__has_cpp_attribute(no_unique_address))
 #define GLZ_NO_UNIQUE_ADDRESS [[no_unique_address]]
@@ -65,6 +34,8 @@ import glaze.util.inline;
 // no_unique_address is not available.
 #define GLZ_NO_UNIQUE_ADDRESS
 #endif
+
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -592,3 +563,5 @@ namespace glz
       using type = decltype(glz::tuple<T...>::decl_elem(glz::tuplet::tag<I>()));
    };
 }
+
+END_EXPORT

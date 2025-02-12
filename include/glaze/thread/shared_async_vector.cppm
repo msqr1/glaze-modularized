@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -20,14 +23,11 @@ import glaze.util.expected;
 #include "glaze/util/expected.cppm"
 #endif
 
-
-
-
 // Provides a thread-safe vector with shared ownership
 // This shared_async_vector allows multiple instances to share the same data and mutex
 // It ensures thread safety during read and write operations
 
-namespace glz
+EXPORT namespace glz
 {
 
    template <class V>

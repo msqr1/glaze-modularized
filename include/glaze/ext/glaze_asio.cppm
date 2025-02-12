@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -10,6 +13,8 @@ module;
 #define GLZ_USING_BOOST_ASIO
 #endif
 #include <boost/asio.hpp>
+#else
+#error "Standalone or boost asio must be included to use glaze/ext/glaze_asio.hpp"
 #endif
 #include <cassert>
 #include <coroutine>
@@ -19,32 +24,11 @@ export module glaze.ext.glaze_asio;
 import glaze.rpc.repe.registry;
 import glaze.util.memory_pool;
 #else
-#if __has_include(<asio.hpp>) && !defined(GLZ_USE_BOOST_ASIO)
-#elif __has_include(<boost/asio.hpp>)
-#ifndef GLZ_USING_BOOST_ASIO
-#define GLZ_USING_BOOST_ASIO
-#endif
-#endif
 #include "glaze/rpc/repe/registry.cppm"
 #include "glaze/util/memory_pool.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-#if __has_include(<asio.hpp>) && !defined(GLZ_USE_BOOST_ASIO)
-#elif __has_include(<boost/asio.hpp>)
-#ifndef GLZ_USING_BOOST_ASIO
-#define GLZ_USING_BOOST_ASIO
-#endif
-#else
-static_assert(false, "standalone or boost asio must be included to use glaze/ext/glaze_asio.hpp");
-#endif
-
-
-
-namespace glz
+EXPORT namespace glz
 {
    namespace repe
    {

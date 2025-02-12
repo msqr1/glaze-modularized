@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -20,13 +23,7 @@ import glaze.util.itoa;
 #include "glaze/util/itoa.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    template <class T>
    GLZ_ALWAYS_INLINE constexpr auto sized_integer_conversion() noexcept

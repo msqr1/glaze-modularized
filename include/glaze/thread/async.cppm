@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -15,12 +18,6 @@ import glaze.util.type_traits;
 #include "glaze/util/type_traits.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 // The purpose of glz::sync is to create a thread-safe wrapper around a type
 // The only way to access the data is by supplying lambdas to `read` or `write`
 // methods, which feed underlying data into the lambda.
@@ -32,7 +29,7 @@ import glaze.util.type_traits;
 // s.write([](auto& value) { value.x = 42; });
 // s.read([](const auto& value) { std::cout << value.x << '\n'; });
 
-namespace glz
+EXPORT namespace glz
 {
    template <class T, class Callable>
    concept const_callable = std::invocable<Callable, const T&>;

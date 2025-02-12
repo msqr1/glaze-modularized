@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -20,13 +23,9 @@ import glaze.core.common;
 #include "glaze/core/common.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 // Provides a thread safe wrapper around a std::string, which Glaze knows how to serialize/deserialize safely
+
+BEGIN_EXPORT
 
 namespace glz
 {
@@ -476,3 +475,5 @@ namespace std
    };
 }
 #endif
+
+END_EXPORT

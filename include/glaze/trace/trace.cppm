@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -14,12 +17,6 @@ import glaze.json.write;
 #include "glaze/json/write.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
-
 // This code allows profiling and time tracing using tools like Perfetto https://perfetto.dev/
 // The specification adheres to Chrome's tracing format document:
 // https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview
@@ -30,7 +27,7 @@ import glaze.json.write;
 // trace.end("my event name");
 // ```
 
-namespace glz
+EXPORT namespace glz
 {
    enum struct display_time_unit : uint32_t {
       s, // seconds

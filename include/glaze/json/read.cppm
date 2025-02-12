@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -10,10 +13,6 @@ module;
 #include <iterator>
 #include <ranges>
 #include <type_traits>
-#define GLZ_PARSE_WS_COLON \
-   GLZ_SKIP_WS();          \
-   GLZ_MATCH_COLON();      \
-   GLZ_SKIP_WS();
 #ifdef CPP_MODULES
 export module glaze.json.read;
 import glaze.core.common;
@@ -39,17 +38,7 @@ import glaze.util.variant;
 #include "glaze/util/glaze_fast_float.cppm"
 #include "glaze/util/type_traits.cppm"
 #include "glaze/util/variant.cppm"
-#define GLZ_PARSE_WS_COLON \
-   GLZ_SKIP_WS();          \
-   GLZ_MATCH_COLON();      \
-   GLZ_SKIP_WS();
 #endif
-
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
 
 #ifdef _MSC_VER
 // Turn off MSVC warning for unreachable code due to constexpr branching

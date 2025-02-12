@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -16,12 +19,9 @@ import glaze.glaze;
 #endif
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
 #if __cpp_exceptions
 
+BEGIN_EXPORT
 
 namespace glz::ex
 {
@@ -208,5 +208,7 @@ namespace glz::ex
       }
    }
 }
+
+END_EXPORT
 
 #endif

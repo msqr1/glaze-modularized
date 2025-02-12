@@ -5,6 +5,8 @@ module;
 #include "../../Export.hpp"
 #if __has_include(<Eigen/Core>)
 #include <Eigen/Core>
+#else
+#error "Eigen must be included to use glaze/ext/eigen.hpp"
 #endif
 #include <span>
 #ifdef CPP_MODULES
@@ -28,16 +30,7 @@ import glaze.json.write;
 #include "glaze/json/write.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-#if __has_include(<Eigen/Core>)
-#else
-static_assert(false, "Eigen must be included to use glaze/ext/eigen.hpp");
-#endif
-
-
+BEGIN_EXPORT 
 
 namespace glz
 {
@@ -252,3 +245,5 @@ struct glz::meta<Eigen::Matrix<Scalar, Rows, Cols>>
                                                    chars<num_to_string<Cols>::value>, chars<",">, //
                                                    chars<">">>;
 };
+
+END_EXPORT

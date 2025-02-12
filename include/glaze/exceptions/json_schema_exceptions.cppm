@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -14,14 +17,9 @@ import glaze.json.schema;
 #endif
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
 #if __cpp_exceptions
 
-
-namespace glz::ex
+EXPORT namespace glz::ex
 {
    template <class T, opts Opts = opts{}, class Buffer>
    void write_json_schema(Buffer&& buffer)

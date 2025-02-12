@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -5,11 +8,6 @@ module;
 #include "../../Export.hpp"
 #include <array>
 #include <string_view>
-#if defined(__clang__) || defined(__GNUC__)
-#define GLZ_PRETTY_FUNCTION __PRETTY_FUNCTION__
-#elif defined(_MSC_VER)
-#define GLZ_PRETTY_FUNCTION __FUNCSIG__
-#endif
 #ifdef CPP_MODULES
 export module glaze.reflection.get_name;
 import glaze.reflection.to_tuple;
@@ -17,26 +15,18 @@ import glaze.util.string_literal;
 #else
 #include "glaze/reflection/to_tuple.cppm"
 #include "glaze/util/string_literal.cppm"
-#if defined(__clang__) || defined(__GNUC__)
-#define GLZ_PRETTY_FUNCTION __PRETTY_FUNCTION__
-#elif defined(_MSC_VER)
-#define GLZ_PRETTY_FUNCTION __FUNCSIG__
 #endif
-#endif
-
-// Glaze Library
-// For the license information refer to glaze.hpp
-
 
 // TODO: Use std::source_location when deprecating clang 14
 // #include <source_location>
 
-
 #if defined(__clang__) || defined(__GNUC__)
 #define GLZ_PRETTY_FUNCTION __PRETTY_FUNCTION__
 #elif defined(_MSC_VER)
 #define GLZ_PRETTY_FUNCTION __FUNCSIG__
 #endif
+
+BEGIN_EXPORT
 
 // For struct fields
 namespace glz::detail
@@ -230,3 +220,5 @@ namespace glz
 #endif
    }
 }
+
+END_EXPORT

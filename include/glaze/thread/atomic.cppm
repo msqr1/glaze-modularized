@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -10,14 +13,9 @@ import glaze.core.common;
 #include "glaze/core/common.cppm"
 #endif
 
-// Glaze Library
-// For the license information refer to glaze.hpp
-
-
-
 // Supports serialization/deserialization of std::atomic
 
-namespace glz::detail
+EXPORT namespace glz::detail
 {
    template <typename T>
    concept is_atomic = requires(T a, typename std::remove_reference_t<decltype(a.load())>& expected,

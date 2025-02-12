@@ -1,3 +1,6 @@
+// Glaze Library
+// For the license information refer to glaze.hpp
+
 #pragma once
 #ifdef CPP_MODULES
 module;
@@ -20,16 +23,13 @@ import glaze.util.expected;
 #include "glaze/util/expected.cppm"
 #endif
 
-
-
-
 // Provides a semi-safe flat map
 // This shared_async_map only provides thread safety when inserting/deletion
 // It is intended to store thread safe types for more efficient access
 
 // This shared_async_map is intended to hold thread safe value types (V)
 
-namespace glz
+EXPORT namespace glz
 {
    template <class K, class V>
    struct shared_async_map
